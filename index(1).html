@@ -1,0 +1,1962 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Arjdal Luna Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap">
+<style>
+body{margin:0}
+img{max-width:100%}
+/* Layout: a black starry "desktop" with draggable pink OS-style windows. Single dark look on purpose. */
+:root{
+  --night:#000000;
+  --pink:#E6007E;
+  --pink-deep:#B8005F;
+  --pink-title:#D1006F;
+  --win:#F8B6CB;
+  --panel:#F9C3D5;
+  --panel-soft:#FBD3E0;
+  --paper:#FFF3F7;
+  --ink:#3B2230;
+  --ink-soft:#9E0058;
+  --lilac:#A585F0;
+  --violet:#4B1C8C;
+  --white:#FFFFFF;
+  --font:'Poppins', 'Segoe UI', system-ui, sans-serif;
+  color-scheme:dark;
+}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:var(--night);color:var(--ink);font-family:var(--font);overflow:hidden}
+*{box-sizing:border-box}
+button{font-family:inherit}
+a{color:var(--pink-deep)}
+a:hover{color:#7A003F}
+:focus-visible{outline:3px solid var(--lilac);outline-offset:2px}
+
+.desk{position:relative;width:100%;height:100%;overflow:hidden}
+.stars{position:absolute;inset:0;pointer-events:none}
+.star{position:absolute;filter:drop-shadow(0 0 4px currentColor);animation:tw 3.2s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.25;transform:scale(.8) rotate(0deg)}50%{opacity:1;transform:scale(1.1) rotate(20deg)}}
+
+/* Welcome */
+.welcome{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px}
+.welcome button{padding:14px 28px;background:var(--white);border:3px solid var(--violet);color:#3D1478;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease}
+.welcome button:hover{transform:translateY(-2px);box-shadow:0 0 22px rgba(230,0,126,.7)}
+
+/* Windows */
+.win{position:absolute;display:flex;flex-direction:column;background:var(--win);border:2px solid var(--pink);box-shadow:0 0 28px rgba(230,0,126,.45);max-width:calc(100% - 16px)}
+.win.shadow{box-shadow:8px 8px 0 #000, 0 0 28px rgba(230,0,126,.45)}
+.win.pop{animation:pop .2s ease-out}
+@keyframes pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.win.max{left:12px!important;top:12px!important;width:calc(100% - 24px)!important;height:calc(100% - 24px);max-width:none}
+.bar{height:34px;flex:0 0 auto;background:var(--pink);display:flex;justify-content:flex-end;align-items:center;cursor:grab;touch-action:none;user-select:none}
+.bar:active{cursor:grabbing}
+.max .bar{cursor:default}
+.tb{min-width:40px;height:34px;border:0;background:transparent;color:var(--white);font-weight:700;font-size:15px;cursor:pointer}
+.tb:hover{background:rgba(255,255,255,.2)}
+.body{overflow:auto;max-height:min(76vh,660px)}
+.max .body{max-height:none;flex:1 1 auto;min-height:0}
+.body::-webkit-scrollbar{width:8px}
+.body::-webkit-scrollbar-thumb{background:var(--pink);border-radius:4px}
+
+.grid{background-color:var(--panel);background-image:linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px);background-size:18px 18px}
+.panel{border:2px solid var(--pink);border-radius:6px;box-shadow:0 0 14px rgba(230,0,126,.35)}
+.glow{margin:0;text-align:center;font-weight:900;color:var(--white);text-shadow:0 3px 0 var(--pink),0 0 22px rgba(230,0,126,.9);text-wrap:balance}
+
+/* Main window */
+#w-main{width:560px}
+.main-in{padding:32px clamp(16px,4vw,32px);display:flex;flex-direction:column;align-items:center;gap:32px}
+.main-in h1{font-size:clamp(38px,8vw,60px);letter-spacing:-.01em}
+.id{display:flex;flex-direction:column;align-items:center;gap:8px}
+/* Fenêtre principale : barre de titre, icônes rondes, ligne de statut */
+#w-main{width:600px;box-shadow:10px 10px 0 #000,0 0 40px rgba(230,0,126,.55)}
+.main-bar{justify-content:space-between;padding:0 12px}
+.bar-title{color:var(--white);font-size:12px;font-weight:700;letter-spacing:.08em}
+.bar-dots{display:flex;gap:6px}
+.bar-dots i{width:10px;height:10px;border-radius:50%;background:var(--white);opacity:.9}
+.bar-dots i:nth-child(2){opacity:.6}
+.bar-dots i:nth-child(3){opacity:.35}
+.main-in{gap:26px;padding-top:36px;padding-bottom:22px}
+.main-in h1{font-size:clamp(40px,9vw,66px)}
+.menu{min-height:0;padding:26px 10px 22px;gap:4px}
+.icon{gap:10px;color:#3B2230;font-size:13px;font-weight:600;padding:4px 0}
+.icon .ico{width:74px;height:74px;border-radius:50%;background:var(--white);border:2px solid var(--pink);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 0 rgba(230,0,126,.35);transition:background .2s ease, transform .2s ease, box-shadow .2s ease;color:#3B2230}
+.icon svg{width:42px;height:42px}
+.icon svg path,.icon svg circle{stroke:currentColor}
+.icon svg text,.icon svg circle[fill="#111"]{fill:currentColor}
+.icon:hover{transform:none;color:var(--pink-deep)}
+.icon:hover .ico{background:var(--pink);color:var(--white);transform:translateY(-5px) rotate(-6deg);box-shadow:0 11px 0 rgba(230,0,126,.3)}
+.icon:hover .ico circle[fill="#F9C3D5"]{fill:var(--pink)}
+.status-line{margin:0;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--pink-deep)}
+.pulse{width:9px;height:9px;border-radius:50%;background:var(--pink);box-shadow:0 0 0 0 rgba(230,0,126,.6);animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{to{box-shadow:0 0 0 10px rgba(230,0,126,0)}}
+@media (max-width:720px){.icon .ico{width:58px;height:58px}.icon svg{width:32px;height:32px}.menu{padding:18px 6px}}
+.job{margin:0;color:var(--pink-deep);font-size:clamp(14px,3vw,17px);font-weight:600;letter-spacing:.02em;text-align:center}
+.job span{display:inline-block;margin:0 8px;color:var(--pink)}
+
+/* LinkedIn toujours visible */
+.li-float{position:absolute;right:calc(16px + env(safe-area-inset-right, 0px));bottom:calc(16px + env(safe-area-inset-bottom, 0px));z-index:2147483000;display:flex;align-items:center;gap:8px;min-height:44px;padding:0 18px 0 14px;border-radius:999px;background:var(--pink);color:var(--white);border:2px solid var(--white);font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 0 18px rgba(230,0,126,.65);transition:transform .15s ease, box-shadow .15s ease}
+.li-float:hover{color:var(--white);transform:translateY(-2px);box-shadow:0 0 26px rgba(230,0,126,.9)}
+.li-float svg{width:20px;height:20px}
+.menu{align-self:stretch;min-height:170px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:center;padding:0 8px;box-shadow:0 0 18px rgba(230,0,126,.45)}
+.icon{display:flex;flex-direction:column;align-items:center;gap:6px;background:transparent;border:0;color:#111;font-size:12px;padding:8px 0;text-decoration:none;cursor:pointer;transition:transform .15s ease}
+.icon:hover{transform:translateY(-4px) scale(1.06);color:#111}
+.icon svg{width:52px;height:52px}
+
+/* Projects */
+#w-projects{width:660px}
+.projects-in{padding:24px clamp(14px,4vw,32px) 36px}
+.projects-in h2{font-size:42px}
+.projects-in .sub{margin:6px 0 0;text-align:center;font-size:13px;color:var(--pink-deep);font-weight:600}
+.cards{margin:28px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.card{position:relative;display:flex;flex-direction:column;padding:0;text-align:left;background:var(--paper);border:2px solid var(--pink);border-radius:8px;box-shadow:0 0 10px rgba(230,0,126,.3);overflow:hidden;cursor:pointer;transition:transform .18s ease, box-shadow .18s ease}
+.card:hover,.card:focus-visible{transform:translateY(-4px);box-shadow:0 0 24px rgba(230,0,126,.65);z-index:2}
+.thumb{display:block;width:100%;flex-shrink:0;position:relative;aspect-ratio:16/10;max-width:100%;background:#1a0a12;border-bottom:2px solid var(--pink);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+.card:hover .thumb img{transform:scale(1.06)}
+.tag{position:absolute;left:10px;top:10px;padding:4px 10px;border-radius:999px;background:var(--pink);color:var(--white);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.card > .meta{width:100%}
+.meta{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.meta b{font-size:17px;font-weight:800;color:var(--pink-deep);line-height:1.25}
+.meta span{font-size:12px;line-height:1.5;color:var(--ink)}
+.meta em{margin-top:6px;font-style:normal;font-size:12px;font-weight:700;color:var(--pink-deep)}
+.card:hover .meta em{text-decoration:underline}
+.card.solo{grid-column:1 / -1;justify-self:center;width:calc(50% - 10px)}
+/* Survol des cartes : inclinaison 3D, reflet, étoiles, bandeau */
+.card{transform-style:preserve-3d;will-change:transform;overflow:visible}
+.card .thumb{border-radius:6px 6px 0 0}
+.card:hover,.card:focus-visible{box-shadow:0 0 0 2px var(--pink),0 14px 34px rgba(230,0,126,.55),0 0 40px rgba(165,133,240,.35)}
+.thumb::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);pointer-events:none}
+.card:hover .thumb::after{animation:shine .7s ease-out}
+@keyframes shine{to{left:130%}}
+/* Aperçu vidéo au survol */
+.thumb video{pointer-events:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s ease}
+.card.playing .thumb video{opacity:1}
+.card.playing .thumb img{transform:none}
+.thumb .tag{z-index:2}
+.hero-vid{display:block;width:100%;max-width:100%;aspect-ratio:16/9;object-fit:cover;border:2px solid var(--pink);border-radius:6px;background:#1a0a12;box-shadow:0 0 14px rgba(230,0,126,.35)}
+.meta em{transition:transform .2s ease}
+.card:hover .meta em{transform:translateX(6px)}
+.spark{position:absolute;width:18px;height:18px;color:var(--pink);pointer-events:none;opacity:0;transform:scale(0) rotate(0deg);filter:drop-shadow(0 0 4px currentColor);z-index:3}
+.spark:nth-of-type(2){color:var(--lilac)}
+.spark.s1{top:-9px;right:-9px}
+.spark.s2{bottom:30%;left:-10px;width:14px;height:14px}
+.spark.s3{bottom:-8px;right:22%;width:12px;height:12px}
+.card:hover .spark{animation:sparkle 1.1s ease-in-out infinite}
+.card:hover .spark.s2{animation-delay:.2s}
+.card:hover .spark.s3{animation-delay:.4s}
+@keyframes sparkle{0%{opacity:0;transform:scale(0) rotate(0deg)}40%{opacity:1;transform:scale(1.1) rotate(90deg)}100%{opacity:0;transform:scale(.2) rotate(180deg)}}
+.tools{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+.tool{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;border:1.5px solid var(--pink);background:var(--white);color:var(--pink-deep);font-size:11px;font-weight:600;line-height:1.4}
+.tool::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--pink)}
+.projects-in{container-type:inline-size}
+@container (min-width:900px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.card.solo{grid-column:auto;justify-self:stretch;width:auto}}
+@container (max-width:480px){.cards{grid-template-columns:minmax(0,1fr)}.card.solo{width:100%}}
+
+/* About */
+#w-about{width:580px}
+.stack{padding:24px clamp(14px,4vw,32px) 32px;display:flex;flex-direction:column;gap:20px}
+.stack > h2{font-size:40px}
+.box{padding:20px;display:flex;flex-direction:column;gap:12px}
+.box h3{margin:0;font-size:19px;font-weight:800;color:var(--pink-deep)}
+.intro{display:flex;flex-wrap:wrap;gap:20px;align-items:center;flex-direction:row}
+.photo{flex:0 0 104px;height:104px;border-radius:50%;border:3px solid var(--pink);background:var(--white);display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;color:var(--ink-soft);font-weight:600}
+.intro > div{flex:1 1 240px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.intro h3{font-size:22px}
+p{margin:0;font-size:14px;line-height:1.7;color:var(--ink)}
+.intro p{font-size:13px;line-height:1.6}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:6px 14px;border-radius:999px;background:var(--pink);color:var(--white);font-size:12px;font-weight:600}
+.chip.alt{background:var(--white);color:var(--ink-soft);border:2px solid var(--pink)}
+.path{display:flex;flex-direction:column;gap:12px;font-size:13px;color:var(--ink)}
+.path > div{display:flex;justify-content:space-between;gap:16px}
+.path strong{color:var(--pink-deep)}
+.path em{flex:0 0 auto;font-style:normal;font-weight:600}
+
+/* About me (nouvelle mise en page) */
+#w-about{width:600px}
+.about-in{gap:22px;padding-bottom:36px}
+.profile{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+.avatar{position:relative;margin:4px 0 10px;width:min(230px,70%);aspect-ratio:1;height:auto}
+.avatar img{display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;border:4px solid var(--white);box-shadow:0 0 0 4px var(--pink),0 0 34px rgba(230,0,126,.6)}
+
+@keyframes orbit{to{transform:rotate(360deg)}}
+.pname{margin:0;font-size:clamp(26px,6vw,34px);font-weight:900;color:var(--white);text-shadow:0 3px 0 var(--pink),0 0 18px rgba(230,0,126,.8)}
+.prole{margin:0;color:var(--pink-deep);font-size:15px;font-weight:600}
+.prole span{display:inline-block;margin:0 8px;color:var(--pink)}
+.pbio{margin-top:12px;max-width:46ch;display:flex;flex-direction:column;gap:12px}
+.pbio p{font-size:14px;line-height:1.75}
+.life{display:flex;flex-direction:column;gap:22px;padding-top:18px;border-top:2px dashed rgba(230,0,126,.4)}
+.life > .label{text-align:center}
+.hobby{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:22px;align-items:center}
+.hobby.rev .hobby-text{order:2}
+.hobby-text{display:flex;flex-direction:column;gap:8px;min-width:0}
+.hobby h3{margin:0;font-size:20px;font-weight:800;color:var(--pink-title)}
+.life-deck{padding:8px 12px 16px;max-width:220px;justify-self:center;width:100%}
+.life-deck .deck-stack{aspect-ratio:3/4}
+.life-deck .deck-stack img{object-position:center}
+@media (max-width:560px){.hobby{grid-template-columns:minmax(0,1fr)}.hobby.rev .hobby-text{order:0}}
+.toolsline{display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:18px;border-top:2px dashed rgba(230,0,126,.4)}
+.toolsline .tools{list-style:none;margin:0;padding:0;justify-content:center;gap:8px}
+.toolsline .tool{font-size:12px;padding:4px 11px}
+.tabs{display:flex;flex-direction:column;align-items:center;gap:14px;padding-top:20px;border-top:2px dashed rgba(230,0,126,.4)}
+.tablist{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;padding:4px;border-radius:999px;background:var(--white);border:2px solid var(--pink);max-width:100%}
+.tablist button{min-height:38px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:var(--pink-deep);font-size:13px;font-weight:700;cursor:pointer;transition:background .2s ease, color .2s ease}
+.tablist button[aria-selected="true"]{background:var(--pink);color:var(--white)}
+.tablist button:not([aria-selected="true"]):hover{background:rgba(230,0,126,.12)}
+.tabpanel{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;animation:pop .25s ease-out}
+.tabpanel .chips{list-style:none;margin:0;padding:0;justify-content:center;gap:8px}
+.tabpanel p{font-size:13px;color:var(--ink)}
+@media (prefers-reduced-motion: reduce){.avatar::after,.tabpanel{animation:none}}
+
+/* CV */
+#w-resume{width:620px}
+.resume-in{padding:24px clamp(14px,4vw,28px) 32px;display:flex;flex-direction:column;align-items:center;gap:18px}
+.resume-in h2{font-size:40px}
+.cv-hint{margin:-6px 0 0;font-size:12px;font-weight:600;color:var(--pink-deep)}
+.cv-page{margin:0;width:100%;position:relative}
+.cv-page img{display:block;width:100%;height:auto;background:var(--white);border:2px solid var(--pink);border-radius:6px;box-shadow:8px 8px 0 var(--pink)}
+
+/* Contact */
+#w-contact{width:500px}
+.contact-in{padding:22px;display:flex;flex-direction:column;gap:18px}
+form.box{margin:0}
+form h2{margin:0 0 4px;text-align:center;font-size:24px;font-weight:800;color:var(--pink-deep)}
+label{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:600;color:var(--ink-soft)}
+.field{width:100%;font-family:inherit;font-size:13px;color:var(--ink);background:var(--paper);border:2px solid #F28BB8;border-radius:4px;padding:10px 12px}
+.field::placeholder{color:#B07890}
+.field:focus{outline:none;border-color:var(--pink);box-shadow:0 0 0 3px rgba(230,0,126,.25)}
+textarea.field{resize:vertical}
+.btn{min-height:44px;padding:0 26px;border:0;border-radius:4px;background:var(--pink);color:var(--white);font-size:14px;font-weight:700;cursor:pointer;transition:background .15s ease;display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.btn:hover{background:var(--pink-deep);color:var(--white)}
+.status{font-size:12px;color:var(--ink-soft);font-weight:600;text-align:center;line-height:1.6}
+.status a{font-weight:700}
+.infos{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.info{padding:14px 12px;display:flex;flex-direction:column;gap:6px;min-width:0;box-shadow:0 0 10px rgba(230,0,126,.3)}
+.info span:first-child{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--pink-deep)}
+.info .val{font-size:11px;color:var(--ink);overflow-wrap:anywhere;user-select:all}
+.copy{align-self:flex-start;border:0;background:transparent;color:var(--pink-deep);font-size:11px;font-weight:700;padding:4px 0;cursor:pointer;text-decoration:underline}
+
+/* Project */
+#w-project{width:840px}
+.project-in{padding:28px clamp(14px,5vw,56px) 40px;display:flex;flex-direction:column;gap:24px}
+.proj{display:flex;flex-direction:column;gap:24px}
+.proj header{padding:28px 24px;display:flex;flex-direction:column;gap:18px}
+.proj h1{margin:0;text-align:center;font-size:clamp(24px,4vw,34px);line-height:1.3;font-weight:800;color:var(--pink-title);text-wrap:balance}
+.details{padding:24px;display:flex;flex-direction:column;gap:12px}
+.details h2{margin:0;font-size:24px;font-weight:800;color:var(--pink-title)}
+.details ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--ink)}
+.sec{background:var(--panel-soft);border-left:5px solid var(--pink);border-radius:6px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.sec h2{margin:0;font-size:22px;font-weight:800;color:var(--pink-deep)}
+.sec h3{margin:6px 0 0;font-size:16px;font-weight:700;color:var(--pink-deep)}
+.pics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.ph{margin:0;min-height:200px;border:2px dashed var(--pink);border-radius:6px;background:var(--paper);display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-size:13px;font-weight:600;color:var(--ink-soft)}
+.ph.tall{min-height:280px}
+.back{align-self:center}
+.block{padding:24px;display:flex;flex-direction:column;gap:18px}
+.block > h2{margin:0;font-size:24px;font-weight:800;color:var(--pink-title)}
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.shots img{display:block;width:100%;max-width:100%;aspect-ratio:391/242;object-fit:cover;border:2px solid var(--pink);border-radius:6px;box-shadow:0 0 12px rgba(230,0,126,.3);transition:transform .2s ease}
+.shots img:hover{transform:scale(1.03)}
+.trailer{display:block;width:100%;max-width:100%;aspect-ratio:16/9;background:#1a0a12;border:2px solid var(--pink);border-radius:6px;box-shadow:6px 6px 0 rgba(0,0,0,.5)}
+.sec ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.6;color:var(--ink)}
+.sec ul strong{color:var(--pink-deep)}
+@container (max-width:520px){.shots{grid-template-columns:minmax(0,1fr)}}
+.project-in{container-type:inline-size}
+
+/* Mise en page des fiches projet */
+.p-hero{padding:32px 28px;display:flex;flex-direction:column;gap:14px}
+.kicker{align-self:flex-start;padding:4px 12px;border-radius:999px;background:var(--pink);color:var(--white);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.proj .p-hero h1{text-align:left;font-size:clamp(32px,7cqi,52px);font-weight:900;line-height:1.1}
+.lead{font-size:15px;line-height:1.75;max-width:65ch}
+.facts{margin:10px 0 0;padding-top:16px;border-top:2px dashed rgba(230,0,126,.45);display:flex;flex-wrap:wrap;gap:14px 0}
+.fact{flex:1 1 140px;min-width:0;padding:0 18px;border-left:3px solid var(--pink)}
+.fact:first-child{padding-left:14px}
+.fact dt{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pink-deep)}
+.fact dd{margin:2px 0 0;font-size:13px;font-weight:600;color:var(--ink);line-height:1.4}
+.p-trailer .trailer{box-shadow:8px 8px 0 var(--pink),0 0 30px rgba(230,0,126,.35)}
+.p-title{margin:16px 0 0;text-align:center;font-size:clamp(26px,5.5cqi,38px);font-weight:900;color:var(--white);text-shadow:0 3px 0 var(--pink),0 0 18px rgba(230,0,126,.8);text-transform:uppercase}
+.row{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:center}
+.row.rev .row-text{order:2}
+.row-text{display:flex;flex-direction:column;gap:12px;min-width:0}
+.label{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--pink-deep)}
+.row-text h3,.prog h3{margin:0;font-size:clamp(20px,4cqi,28px);font-weight:800;color:var(--pink-title);line-height:1.2;text-wrap:balance}
+.row-img{margin:0;padding:6px}
+.row-img img{display:block;width:100%;max-width:100%;aspect-ratio:391/242;object-fit:cover;border:2px solid var(--pink);border-radius:8px;box-shadow:8px 8px 0 var(--pink);transform:rotate(1.5deg);transition:transform .25s ease}
+.row.rev .row-img img{transform:rotate(-1.5deg);box-shadow:-8px 8px 0 var(--lilac)}
+.row-img img:hover,.row.rev .row-img img:hover{transform:rotate(0deg) scale(1.03)}
+.pull{margin:4px 0 0;padding:12px 16px;background:var(--pink);color:var(--white);font-weight:700;font-size:16px;line-height:1.4;border-radius:6px}
+.prog{padding:26px;display:flex;flex-direction:column;gap:12px}
+.feats{margin-top:10px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 32px}
+.feat{display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:14px;row-gap:4px;align-items:start;min-width:0}
+.feat svg{grid-row:1 / span 2;width:48px;height:48px;padding:11px;border-radius:50%;background:var(--pink);color:var(--white);box-shadow:0 0 0 5px rgba(230,0,126,.18);transition:transform .25s ease}
+.feat:hover svg{transform:rotate(-12deg) scale(1.08)}
+.feat h4{margin:0;padding-top:4px;font-size:16px;font-weight:800;color:var(--pink-deep);line-height:1.3}
+.feat p{font-size:13px;line-height:1.65}
+/* Pile de photos à swiper */
+.deck{position:relative;margin:0;padding:10px 14px 20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.deck-stack{position:relative;width:100%;aspect-ratio:391/242;touch-action:pan-y;cursor:grab;user-select:none}
+.deck-stack:active{cursor:grabbing}
+.deck-stack img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:2px solid var(--pink);border-radius:10px;box-shadow:6px 6px 0 var(--pink),0 10px 24px rgba(0,0,0,.25);transition:transform .4s cubic-bezier(.2,.9,.3,1.2), opacity .3s ease;pointer-events:none;-webkit-user-drag:none}
+.row.rev .deck-stack img{box-shadow:-6px 6px 0 var(--lilac),0 10px 24px rgba(0,0,0,.25)}
+.deck-stack.drag img{transition:none}
+/* Indice de swipe : la photo du dessus se décale un peu + badge main */
+.deck-stack.hint img.top{animation:nudge 3.4s ease-in-out infinite}
+@keyframes nudge{0%,62%,100%{translate:0 0;rotate:0deg}72%{translate:-26px 0;rotate:-3deg}82%{translate:16px 0;rotate:2deg}90%{translate:0 0;rotate:0deg}}
+.deck-hint{position:absolute;right:-8px;top:-8px;z-index:20;width:26px;height:26px;border-radius:50%;background:var(--pink);color:var(--white);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.3);pointer-events:none;transition:opacity .3s ease, transform .3s ease;animation:swipehand 1.4s ease-in-out infinite}
+.deck-hint svg{width:14px;height:14px}
+@keyframes swipehand{0%,100%{translate:0 0}50%{translate:4px 0}}
+.deck-stack:not(.hint) .deck-hint{opacity:0;transform:scale(.6)}
+@media (prefers-reduced-motion: reduce){.deck-stack.hint img.top,.deck-hint{animation:none}}
+.deck-ui{display:flex;align-items:center;justify-content:center;gap:12px}
+.deck-ui button{width:36px;height:36px;border-radius:50%;border:2px solid var(--pink);background:var(--white);color:var(--pink-deep);font-size:18px;font-weight:800;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s ease, color .15s ease}
+.deck-ui button:hover{background:var(--pink);color:var(--white)}
+.deck-count{font-size:12px;font-weight:700;color:var(--pink-deep);letter-spacing:.06em;min-width:72px;text-align:center}
+
+.proj .p-hero h1.long{font-size:clamp(26px,5.2cqi,40px)}
+.row-text h3.sub3{margin-top:8px;font-size:clamp(17px,3cqi,20px)}
+.deck-stack.tall{aspect-ratio:4/5}
+.deck-stack.tall img{object-fit:cover;object-position:top;background:var(--white)}
+.wide-img{margin:6px 0 4px}
+.wide-img img{display:block;width:100%;max-width:100%;height:auto;border:2px solid var(--pink);border-radius:8px;box-shadow:6px 6px 0 var(--lilac);background:var(--white)}
+.row-img img{background:var(--white)}
+
+/* Parcours en étapes (sans cadres) */
+.steps{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;counter-reset:st;position:relative}
+.steps::before{content:"";position:absolute;left:24px;right:24px;top:21px;border-top:2px dashed rgba(230,0,126,.5)}
+.steps li{position:relative;display:flex;flex-direction:column;gap:6px;min-width:0;counter-increment:st}
+.steps li::before{content:counter(st);width:42px;height:42px;border-radius:50%;background:var(--pink);color:var(--white);font-weight:900;font-size:17px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 5px rgba(230,0,126,.18)}
+.steps b{font-size:15px;font-weight:800;color:var(--pink-deep)}
+.steps span{font-size:13px;line-height:1.6;color:var(--ink)}
+.prog .row{margin:4px 0}
+.feats:has(> .feat:nth-child(3):last-child) .feat:last-child{grid-column:1 / -1}
+@container (max-width:640px){.steps{grid-template-columns:minmax(0,1fr)}.steps::before{display:none}}
+
+/* Captures mobiles dans un cadre de téléphone */
+.phone{width:min(230px,100%);margin:0 auto;border:7px solid #1a0a12;border-radius:28px;overflow:hidden;background:#1a0a12;box-shadow:8px 8px 0 var(--pink),0 0 30px rgba(230,0,126,.35)}
+.phone img,.phone video{display:block;width:100%;height:auto}
+.phone.big{width:min(300px,100%)}
+.row.rev .phone{box-shadow:-8px 8px 0 var(--lilac),0 0 30px rgba(230,0,126,.35)}
+.phone-fig{margin:0;padding:8px}
+.trailer-portrait{aspect-ratio:528/1172;background:#1a0a12}
+.trailer-portrait.ikigai{aspect-ratio:474/940}
+.trailer-portrait.riposte{aspect-ratio:588/1182}
+.p-trailer .phone{transform:rotate(-1.5deg)}
+.starlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.starlist li{position:relative;padding-left:26px;font-size:14px;line-height:1.6;color:var(--ink)}
+.starlist li::before{content:"✦";position:absolute;left:0;top:0;color:var(--pink);font-size:16px}
+.prog .feats:has(> .feat:only-child){grid-template-columns:minmax(0,1fr)}
+
+/* Couverture typographique (projet sans image) */
+.cover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background-color:var(--violet);background-image:radial-gradient(rgba(255,255,255,.18) 1.5px,transparent 1.5px);background-size:14px 14px;color:var(--white);text-align:center;padding:12px}
+.cover b{font-size:clamp(22px,4cqi,30px);font-weight:900;letter-spacing:-.01em;text-shadow:0 3px 0 var(--pink)}
+.cover small{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F9C3D5}
+.card:hover .cover{transform:scale(1.04);transition:transform .3s ease}
+/* Séparation pro / école */
+.group-title{margin:34px 0 0;display:flex;align-items:center;gap:12px;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--pink-deep)}
+.group-title::before,.group-title::after{content:"";flex:1;border-top:2px dashed rgba(230,0,126,.45)}
+.group-title + .cards{margin-top:18px}
+.cards.pro{grid-template-columns:minmax(0,1fr)}
+.card.wide{flex-direction:row}
+.card.wide .thumb{width:46%;flex:0 0 46%;aspect-ratio:16/10;border-bottom:0;border-right:2px solid var(--pink);border-radius:6px 0 0 6px}
+.card.wide .meta{justify-content:center;padding:16px 18px}
+@container (max-width:480px){.card.wide{flex-direction:column}.card.wide .thumb{flex:none;border-right:0;border-bottom:2px solid var(--pink);border-radius:6px 6px 0 0}}
+
+/* Nombre impair de projets : la dernière carte se centre */
+@container (min-width:481px) and (max-width:899px){.cards:not(.pro) > .card:last-child:nth-child(odd){grid-column:1 / -1;justify-self:center;width:calc(50% - 10px)}}
+/* Cadre de navigateur pour les démos de site */
+.browser{border:2px solid var(--pink);border-radius:10px;overflow:hidden;background:var(--white);box-shadow:8px 8px 0 var(--pink),0 0 30px rgba(230,0,126,.35)}
+.browser-bar{height:30px;display:flex;align-items:center;gap:6px;padding:0 12px;background:var(--paper);border-bottom:2px solid var(--pink)}
+.browser-bar i{width:10px;height:10px;border-radius:50%;background:var(--pink);opacity:.9}
+.browser-bar i:nth-child(2){opacity:.6}
+.browser-bar i:nth-child(3){opacity:.35}
+.browser-bar span{margin-left:10px;padding:2px 12px;border-radius:999px;background:var(--white);font-size:11px;font-weight:600;color:var(--ink-soft)}
+.browser video{display:block;width:100%;max-width:100%;aspect-ratio:2258/1302;background:#1a0a12}
+/* Bacastages : Défi / Solution / Impact */
+.hero-shot{margin:0}
+.hero-shot img{display:block;width:100%;max-width:100%;height:auto}
+.dsi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:6px}
+.dsi-col{display:flex;flex-direction:column;gap:12px;min-width:0;padding:4px 22px}
+.dsi-col:first-child{padding-left:0}
+.dsi-col:last-child{padding-right:0}
+.dsi-col + .dsi-col{border-left:2px dashed rgba(230,0,126,.45)}
+.dsi-tag{align-self:flex-start;padding:4px 12px;border-radius:999px;background:var(--pink);color:var(--white);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.dsi h3{margin:0;font-size:clamp(19px,3.4cqi,24px);font-weight:900;line-height:1.2;color:var(--pink-title);text-wrap:balance}
+.dsi-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.dsi-list li{position:relative;padding-left:20px;font-size:14px;line-height:1.6;color:var(--ink)}
+.dsi-list li::before{content:"✦";position:absolute;left:0;top:0;color:var(--pink)}
+.dsi-list b{color:var(--pink-deep)}
+.big{display:flex;flex-direction:column;gap:2px}
+.big b{font-size:clamp(40px,8cqi,58px);font-weight:900;line-height:1;color:var(--white);text-shadow:0 3px 0 var(--pink),0 0 18px rgba(230,0,126,.75);font-variant-numeric:tabular-nums}
+.big span{font-size:13.5px;line-height:1.5;font-weight:600;color:var(--ink)}
+.impact .quote{font-size:14px;margin-top:4px}
+.center-label{display:block;text-align:center;margin-bottom:12px}
+.how{display:flex;flex-direction:column;gap:8px;padding:6px 0;max-width:62ch;align-self:center;text-align:center}
+@container (max-width:680px){
+  .dsi{grid-template-columns:minmax(0,1fr);gap:22px}
+  .dsi-col{padding:0}
+  .dsi-col + .dsi-col{border-left:0;border-top:2px dashed rgba(230,0,126,.45);padding-top:22px}
+}
+
+.said{font-size:16px;line-height:1.55;font-weight:700;color:var(--pink-deep)}
+.said span{display:block;margin-top:4px;font-size:12px;font-weight:600;color:var(--ink-soft)}
+
+.phone-deck{max-width:260px;justify-self:center;width:100%}
+.phone-deck .deck-stack{aspect-ratio:528/1172}
+.phone-deck .deck-stack img{border:6px solid #1a0a12;border-radius:24px}
+
+.minis{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:4px}
+.minis div{display:flex;flex-direction:column;gap:2px}
+.minis b{font-size:30px;font-weight:900;line-height:1;color:var(--white);text-shadow:0 2px 0 var(--pink),0 0 12px rgba(230,0,126,.7);font-variant-numeric:tabular-nums}
+.minis span{font-size:12px;color:var(--ink);max-width:16ch;line-height:1.4}
+.p-trailer{display:flex;flex-direction:column;align-items:center;gap:16px}
+.p-trailer > .browser,.p-trailer > .trailer{align-self:stretch}
+.yt-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;background:var(--white);border:2px solid var(--pink);color:var(--pink-deep);font-size:14px;font-weight:700;text-decoration:none;transition:background .15s ease, color .15s ease}
+.yt-btn:hover{background:var(--pink);color:var(--white)}
+.yt-btn svg{width:16px;height:16px}
+.mock-fig{margin:0;padding:14px;background:var(--white);border-radius:14px;box-shadow:8px 8px 0 var(--pink),0 0 24px rgba(230,0,126,.3);max-width:280px;justify-self:center;width:100%}
+.mock-fig img{display:block;width:100%;height:auto}
+.wide-mock{display:flex;flex-direction:column;gap:10px}
+.wide-mock figure{margin:0;padding:16px;background:var(--white);border-radius:14px;box-shadow:8px 8px 0 var(--lilac),0 0 24px rgba(230,0,126,.3)}
+.wide-mock img{display:block;width:100%;height:auto}
+.mock-caption{text-align:center;font-size:13px;max-width:60ch;align-self:center}
+.gdd{display:flex;flex-direction:column;gap:6px}
+.gdd-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.gdd-grid figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+.gdd-grid img{display:block;width:100%;max-width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;background:var(--white);border:2px solid var(--pink);border-radius:8px;transition:transform .2s ease, box-shadow .2s ease}
+.gdd-grid img:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(230,0,126,.35)}
+.gdd-grid figcaption{font-size:12px;font-weight:700;color:var(--pink-deep);text-align:center}
+.gdd-grid .zoom-badge{top:-6px;right:-6px}
+@container (max-width:560px){.gdd-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.steps.five{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.steps.five b{font-size:14px}
+.steps.five span{font-size:12.5px}
+@container (max-width:760px){.steps.five{grid-template-columns:minmax(0,1fr)}.steps.five::before{display:none}.steps.five li{display:grid;grid-template-columns:42px minmax(0,1fr);column-gap:14px}.steps.five li::before{grid-row:1 / span 2}}
+
+.logo-title{margin:0}
+.logo-title img{display:block;width:min(360px,80%);height:auto;margin:4px 0}
+
+.proj .p-hero h1.with-logo{display:flex;align-items:baseline;gap:2px}
+.with-logo img{height:.74em;width:auto;flex:0 0 auto;align-self:baseline;transform:translateY(.02em)}
+.thumb img.thumb-logo{position:absolute;right:10px;bottom:10px;left:auto;top:auto;z-index:2;width:40px;height:auto;object-fit:contain;padding:6px;border-radius:10px;background:var(--white);box-shadow:0 2px 8px rgba(0,0,0,.3);transform:none!important}
+.deck-stack.fit img{object-fit:contain;object-position:center;background:#0b0b0b}
+.gdd-grid.rulebook img{aspect-ratio:712/1010;object-position:center}
+
+.proj p strong,.proj li strong,.stack p strong{font-weight:700;color:var(--pink-deep)}
+
+/* Chiffres clés */
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;text-align:center;background:#14060E;border:2px solid var(--pink);border-radius:12px;padding:26px 10px;box-shadow:8px 8px 0 var(--pink),0 0 30px rgba(230,0,126,.4)}
+.kpi{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0;padding:0 12px}
+.kpi + .kpi{border-left:2px dashed rgba(230,0,126,.5)}
+.kpi b{font-size:clamp(30px,6cqi,46px);font-weight:900;line-height:1.05;color:var(--white);text-shadow:0 0 18px rgba(230,0,126,.9);font-variant-numeric:tabular-nums;white-space:nowrap}
+.kpi b span{color:#FF5DB1}
+.kpi > span{font-size:13px;line-height:1.5;color:#F9C3D5;max-width:22ch}
+/* Avant / après */
+.ba{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.ba li{display:flex;flex-direction:column;gap:10px;min-width:0;background:var(--white);border-radius:12px;padding:18px 16px;box-shadow:0 6px 18px rgba(184,0,95,.15)}
+.ba h4{margin:0;font-size:16px;font-weight:800;color:var(--pink-deep)}
+.ba small{display:inline-flex;align-items:center;gap:6px;margin-bottom:4px;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.ba-before small{color:#7A5868}
+.ba-before small::before{content:"✕";font-size:11px}
+.ba-after small{color:var(--pink)}
+.ba-after small::before{content:"✦";font-size:12px}
+.ba-before p{font-size:13.5px;line-height:1.55;color:#5E4352}
+.ba-after{padding-top:10px;border-top:2px dashed rgba(230,0,126,.35)}
+.ba-after p{font-size:13.5px;line-height:1.55;font-weight:600;color:var(--ink)}
+/* Citation */
+.quote{margin:4px 0;padding:16px 18px;background:var(--white);border-radius:12px;font-size:16px;line-height:1.55;font-weight:600;color:var(--pink-deep);box-shadow:0 6px 18px rgba(184,0,95,.15)}
+.quote cite{display:block;margin-top:6px;font-size:12px;font-style:normal;font-weight:600;color:var(--ink-soft)}
+@container (max-width:560px){
+  .kpis{grid-template-columns:minmax(0,1fr);gap:18px;padding:22px 16px}
+  .kpi + .kpi{border-left:0;border-top:2px dashed rgba(230,0,126,.5);padding-top:18px}
+  .ba{grid-template-columns:minmax(0,1fr)}
+}
+.snd{position:absolute;right:12px;bottom:12px;z-index:5;width:44px;height:44px;border-radius:50%;border:2px solid var(--white);background:rgba(184,0,95,.9);color:var(--white);display:flex;align-items:center;justify-content:center;padding:0;box-shadow:0 3px 10px rgba(0,0,0,.35)}
+.snd svg{width:22px;height:22px}
+.snd .w{display:none}
+.snd.on .w{display:inline}
+.snd.on .x{display:none}
+.gamif-intro{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:8px 0}
+.gamif-intro h3{margin:0;font-size:clamp(22px,4cqi,30px);font-weight:900;color:var(--white);text-shadow:0 3px 0 var(--pink),0 0 16px rgba(230,0,126,.7)}
+.gamif-intro p{max-width:58ch}
+/* Étapes verticales */
+.steps.vertical{grid-template-columns:minmax(0,1fr);gap:20px}
+.steps.vertical::before{left:20px;right:auto;top:20px;bottom:20px;border-top:0;border-left:2px dashed rgba(230,0,126,.5)}
+.steps.vertical li{display:grid;grid-template-columns:42px minmax(0,1fr);column-gap:16px;row-gap:2px}
+.steps.vertical li::before{grid-row:1 / span 2}
+.steps.vertical b{padding-top:2px}
+.btn.visit{align-self:center}
+
+/* Agrandir une image (loupe) */
+.zoomfig{position:relative}
+img.zoom{cursor:zoom-in}
+.zoom-badge,.deck-zoom{position:absolute;z-index:21;width:26px;height:26px;border-radius:50%;background:var(--white);color:var(--pink-deep);border:2px solid var(--pink);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px rgba(0,0,0,.25);padding:0}
+.zoom-badge{top:-2px;right:-2px;pointer-events:none}
+.deck-zoom{top:-8px;left:-8px;cursor:pointer}
+.zoom-badge svg,.deck-zoom svg{width:13px;height:13px}
+.lightbox{position:absolute;inset:0;z-index:99999;background:rgba(10,0,8,.88);display:flex;align-items:center;justify-content:center;padding:max(16px, env(safe-area-inset-top, 0px)) 16px;cursor:zoom-out}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;border:2px solid var(--pink);border-radius:8px;background:var(--white);box-shadow:0 0 40px rgba(230,0,126,.5)}
+.lightbox button{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;border:2px solid var(--white);background:var(--pink);color:var(--white);font-size:18px;font-weight:800;cursor:pointer}
+
+/* Carrousel d'images (swipe) */
+.carousel{position:relative;display:flex;flex-direction:column;gap:12px}
+.carousel .label{text-align:center}
+.track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:8px 7.5%;scrollbar-width:none;cursor:grab;touch-action:pan-x pan-y}
+.track::-webkit-scrollbar{display:none}
+.track.dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+.slide{flex:0 0 85%;margin:0;scroll-snap-align:center;transition:transform .3s ease, opacity .3s ease;opacity:.55;transform:scale(.94)}
+.slide.on{opacity:1;transform:scale(1)}
+.slide img{display:block;width:100%;max-width:100%;aspect-ratio:391/242;object-fit:cover;border:2px solid var(--pink);border-radius:10px;box-shadow:0 10px 26px rgba(230,0,126,.35);pointer-events:none;user-select:none}
+.cnav{position:absolute;top:calc(50% - 6px);width:44px;height:44px;border-radius:50%;border:2px solid var(--white);background:var(--pink);color:var(--white);font-size:20px;font-weight:800;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);transition:transform .15s ease}
+.cnav:hover{transform:scale(1.1)}
+.cnav.prev{left:0}
+.cnav.next{right:0}
+.dots{display:flex;justify-content:center;gap:8px}
+.dots button{width:10px;height:10px;padding:0;border-radius:999px;border:0;background:rgba(230,0,126,.3);cursor:pointer;transition:width .25s ease, background .25s ease}
+.dots button.on{width:26px;background:var(--pink)}
+@container (max-width:640px){
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .row{grid-template-columns:minmax(0,1fr);gap:16px}
+  .row.rev .row-text{order:0}
+  .feats{grid-template-columns:minmax(0,1fr)}
+  .slide{flex-basis:92%}
+  .track{padding-inline:4%}
+  .cnav{display:none}
+  .p-hero{padding:22px 18px}
+}
+
+/* Téléphone et petites tablettes : les fenêtres prennent toute la largeur */
+@media (max-width:720px){
+  .win{left:8px!important;width:calc(100% - 16px)!important;max-height:calc(100% - 16px);max-width:none}
+  .win:not(#w-main){top:8px!important}
+  .win .body{max-height:none;flex:1 1 auto;min-height:0}
+  .bar{cursor:default}
+  .tb[data-max]{display:none}
+  .main-in{gap:24px;padding-block:24px}
+  .menu{min-height:140px}
+  .icon svg{width:44px;height:44px}
+  .projects-in h2,.stack > h2{font-size:34px}
+  .path > div{flex-direction:column;gap:2px}
+  .sec,.details,.proj header{padding:18px}
+}
+/* Téléphone : chaque fenêtre devient un écran plein, comme une appli */
+@media (max-width:720px){
+  .win:not(#w-main){top:8px!important;height:calc(100% - 16px);box-shadow:0 0 28px rgba(230,0,126,.45)}
+  .win:not(#w-main) .body{padding-bottom:84px}
+  .tb{min-width:48px;height:44px;font-size:18px}
+  .bar{height:44px}
+  .card.wide{flex-direction:column}
+  .card.wide .thumb{width:100%;flex:none;border-right:0;border-bottom:2px solid var(--pink);border-radius:6px 6px 0 0}
+  .row,.hobby{grid-template-columns:minmax(0,1fr)!important}
+  .row.rev .row-text,.hobby.rev .hobby-text{order:0}
+  .deck{max-width:420px;justify-self:center;width:100%}
+  .p-hero{padding:20px 16px}
+  .lead{font-size:14px}
+  .li-float{min-height:40px;padding:0 14px 0 10px;font-size:13px}
+  .welcome button{font-size:13px;padding:12px 20px}
+}
+@media (max-width:380px){
+  .menu{grid-template-columns:repeat(2,minmax(0,1fr));padding-block:8px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .star,.win.pop,.card:hover .spark,.card:hover .thumb::after{animation:none}
+  .card,.icon,.welcome button,.meta em,.thumb img,.thumb video{transition:none}
+}
+</style>
+</head>
+<body>
+
+
+<div class="desk" id="desk">
+  <div class="stars" id="stars" aria-hidden="true"></div>
+
+  <!-- LinkedIn toujours affiché : remplace le lien par celui de ton profil -->
+  <a class="li-float" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+    LinkedIn
+  </a>
+
+  <!-- ÉCRAN D'ACCUEIL -->
+  <div class="welcome" id="welcome">
+    <button type="button" id="enter">Welcome to my portfolio</button>
+  </div>
+
+  <!-- FENÊTRE PRINCIPALE -->
+  <section class="win" id="w-main" data-win="main" aria-label="Arjdal Luna" hidden>
+    <div class="bar main-bar"><span class="bar-title"></span><span class="bar-dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+    <div class="main-in">
+      <div class="id">
+        <h1 class="glow">Arjdal Luna</h1>
+        <p class="job">Junior UX/UI Designer<span aria-hidden="true">·</span>Game Designer</p>
+      </div>
+      <nav class="menu grid panel" aria-label="Menu">
+        <button class="icon" type="button" data-open="projects">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a3 3 0 0 1 3-3h10l4 4h20a3 3 0 0 1 3 3v21a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/><path d="M4 19h40"/><circle cx="37" cy="36" r="7" fill="#F9C3D5"/><path d="M37 39.5l-3-2.9a1.9 1.9 0 0 1 3-2.3a1.9 1.9 0 0 1 3 2.3z"/></svg>
+          <span>projects</span>
+        </button>
+        <button class="icon" type="button" data-open="about">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 4a18 18 0 1 0 9 33.6L42 42l-3.4-8.6A18 18 0 0 0 24 4z"/><circle cx="24" cy="13" r="1.6" fill="#111"/><path d="M21 19h3v12M20 31h8"/></svg>
+          <span>About me</span>
+        </button>
+        <button class="icon" type="button" data-open="contact">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20L24 7l18 13v20a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M6 20l18 13 18-13"/><path d="M6 42l14-11M42 42L28 31"/><circle cx="24" cy="20" r="3.5"/><path d="M27.5 20v1.5a2.5 2.5 0 0 0 5 0V20a8.5 8.5 0 1 0-3.4 6.8"/></svg>
+          <span>Contact</span>
+        </button>
+        <button class="icon" type="button" data-open="resume">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4h19l8 8v32H11z"/><path d="M30 4v8h8"/><text x="15.5" y="28" fill="#111" stroke="none" font-family="Poppins, sans-serif" font-weight="800" font-size="12">CV</text><path d="M16 34h17M16 39h17"/></svg>
+          <span>resume</span>
+        </button>
+      </nav>
+      <p class="status-line"><span class="pulse" aria-hidden="true"></span>Looking for a 3 month internship from February to April 2027</p>
+    </div>
+  </section>
+
+  <!-- FENÊTRE PROJECTS -->
+  <section class="win" id="w-projects" data-win="projects" aria-label="Projects" hidden>
+    <div class="bar">
+      <button class="tb" type="button" data-max aria-label="Agrandir">[ ]</button>
+      <button class="tb" type="button" data-close aria-label="Fermer">x</button>
+    </div>
+    <div class="body projects-in">
+      <h2 class="glow">PROJECTS</h2>
+      <p class="sub">Click a project to see the full case study</p>
+      <h3 class="group-title"><span>Professional experience</span></h3>
+      <div class="cards pro">
+        <button class="card wide" type="button" data-project="baca">
+          <span class="thumb"><img src="img/baca-card.jpg" alt=""><video controlslist="nofullscreen nodownload noremoteplayback" disableremoteplayback disablepictureinpicture webkit-playsinline src="img/baca.mp4" muted loop playsinline preload="metadata" aria-hidden="true"></video><span class="tag">Internship · EdTech</span><img class="thumb-logo" src="img/baca-logo.png" alt=""></span>
+          <span class="meta"><b>Bacastages</b><span>2-month UX/UI internship with an audit, a redesign and gamified prototypes for a career-guidance platform for young people.</span><span class="tools" aria-label="Tools"><span class="tool">Figma</span><span class="tool">Claude Design</span></span><em>View project →</em></span>
+        </button>
+      </div>
+
+      <h3 class="group-title"><span>School projects</span></h3>
+      <div class="cards">
+        <button class="card" type="button" data-project="car">
+          <span class="thumb"><img src="img/car-logo.jpg" alt=""><video controlslist="nofullscreen nodownload noremoteplayback" disableremoteplayback disablepictureinpicture webkit-playsinline src="img/car.mp4" muted loop playsinline preload="metadata" aria-hidden="true"></video><span class="tag">Mobile · Roguelite</span></span>
+          <span class="meta"><b>Carambolage</b><span>A pool-inspired mobile roguelite where you destroy the target cubes, upgrade your balls and reach the next arena.</span><span class="tools" aria-label="Tools"><span class="tool">Figma</span><span class="tool">Teams</span></span><em>View project →</em></span>
+        </button>
+        <button class="card" type="button" data-project="mhw">
+          <span class="thumb"><img src="img/mhw-card.jpg" alt=""><span class="tag">UX Research · UI</span></span>
+          <span class="meta"><b>Monster Hunter World</b><span>Redesigning the HUD and menu systems to reduce cognitive load and improve player flow.</span><span class="tools" aria-label="Tools"><span class="tool">Figma</span></span><em>View project →</em></span>
+        </button>
+        <button class="card" type="button" data-project="melt">
+          <span class="thumb"><img src="img/melt-card-logo.jpg" alt=""><video controlslist="nofullscreen nodownload noremoteplayback" disableremoteplayback disablepictureinpicture webkit-playsinline src="img/melt.mp4" muted loop playsinline preload="metadata" aria-hidden="true"></video><span class="tag">Brawler 3D</span></span>
+          <span class="meta"><b>Make It Melt</b><span>Guide sentient ores into furnaces using heat.</span><span class="tools" aria-label="Tools"><span class="tool">Unity</span><span class="tool">C#</span></span><em>View project →</em></span>
+        </button>
+        <button class="card" type="button" data-project="splosh">
+          <span class="thumb"><img src="img/sploush-logo.jpg" alt=""><video controlslist="nofullscreen nodownload noremoteplayback" disableremoteplayback disablepictureinpicture webkit-playsinline src="img/splosh.mp4" muted loop playsinline preload="metadata" aria-hidden="true"></video><span class="tag">2.5D Platformer</span></span>
+          <span class="meta"><b>Sploush</b><span>A curious slime explores a vertical city by propelling himself with water jets.</span><span class="tools" aria-label="Tools"><span class="tool">Unity 3D</span><span class="tool">Trello</span><span class="tool">Excel</span></span><em>View project →</em></span>
+        </button>
+        <button class="card" type="button" data-project="cube">
+          <span class="thumb"><img src="img/cube-card-hd.jpg" alt=""><video controlslist="nofullscreen nodownload noremoteplayback" disableremoteplayback disablepictureinpicture webkit-playsinline src="img/cube.mp4" muted loop playsinline preload="metadata" aria-hidden="true"></video><span class="tag">One-button game</span></span>
+          <span class="meta"><b>Cube Breaker</b><span>One tap to detonate your orb and trigger the ultimate neon chain reaction.</span><span class="tools" aria-label="Tools"><span class="tool">Unity</span><span class="tool">Visual Scripting</span></span><em>View project →</em></span>
+        </button>
+        <button class="card" type="button" data-project="p5">
+          <span class="thumb"><img src="img/vor2-card.jpg" alt=""><video controlslist="nofullscreen nodownload noremoteplayback" disableremoteplayback disablepictureinpicture webkit-playsinline src="img/voracines.mp4" muted loop playsinline preload="metadata" aria-hidden="true"></video><span class="tag">Board game</span></span>
+          <span class="meta"><b>Voracines</b><span>Play as ancient trees and spread your roots to devour villagers before your rivals.</span><span class="tools" aria-label="Tools"><span class="tool">Excel</span><span class="tool">Google Forms</span></span><em>View project →</em></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FENÊTRE ABOUT ME -->
+  <section class="win shadow" id="w-about" data-win="about" aria-label="About me" hidden>
+    <div class="bar">
+      <button class="tb" type="button" data-max aria-label="Agrandir">[ ]</button>
+      <button class="tb" type="button" data-close aria-label="Fermer">x</button>
+    </div>
+    <div class="body stack about-in">
+      <h2 class="glow">ABOUT ME</h2>
+
+      <!-- Carte de profil -->
+      <div class="profile">
+        <figure class="avatar"><img src="img/luna.jpg" alt="Portrait of Luna Arjdal"></figure>
+        <h3 class="pname">Hi, I'm Luna</h3>
+        <p class="prole">Junior UX/UI Designer<span aria-hidden="true">·</span>Game Designer</p>
+        <div class="pbio">
+          <p>Currently a <strong>second-year Game Design student at ISART Digital</strong>, I approach game design as a natural extension of my lifelong passion for creativity and human connection.</p>
+          <p>My journey is unconventional. I first honed my discipline and attention to detail in the world of <strong>Artisanal Baking and Pastry</strong>, followed by studies in the <strong>hospitality industry</strong>.</p>
+          <p>Deeply inspired by adventure sagas like <strong>Uncharted</strong> and my extensive travels, from Africa and Asia to Scandinavia, I strive to infuse my projects with a sense of <strong>discovery and wonder</strong>, reflecting my love for <strong>cooperative gameplay</strong> and shared moments.</p>
+        </div>
+      </div>
+
+      <!-- En dehors du design -->
+      <div class="life">
+        <span class="label">Beyond design</span>
+        <section class="hobby">
+          <div class="hobby-text">
+            <h3>A traveler at heart</h3>
+            <p>I am a big fan of travel, especially <strong>Asia</strong> and <strong>Scandinavia</strong>, and I have been lucky enough to travel a lot. Every trip feeds my <strong>curiosity</strong> and the sense of <strong>discovery</strong> I try to bring into my games.</p>
+          </div>
+          <figure class="deck life-deck" data-deck aria-label="Travel photos">
+            <div class="deck-stack">
+              <img src="img/life-stockholm.jpg" alt="Luna on a snowy bridge in Stockholm" draggable="false">
+              <img src="img/life-kl.jpg" alt="Luna waving on a bridge in Kuala Lumpur" draggable="false">
+            </div>
+          </figure>
+        </section>
+        <section class="hobby rev">
+          <div class="hobby-text">
+            <h3>Pastry chef &amp; cook</h3>
+            <p>I am a <strong>pastry chef</strong> and a <strong>cook</strong>, and I love making food for people. Seeing their <strong>satisfaction</strong> makes me happy, and it is the same feeling I look for when I design an experience for players and users.</p>
+          </div>
+          <figure class="deck life-deck" data-deck aria-label="Food photos">
+            <div class="deck-stack">
+              <img src="img/life-fraisier.jpg" alt="Homemade strawberry fraisier cake" draggable="false">
+              <img src="img/life-salmon.jpg" alt="Plated salmon dish with vegetables" draggable="false">
+            </div>
+          </figure>
+        </section>
+      </div>
+
+      <!-- Outils : une seule ligne -->
+      <div class="toolsline">
+        <span class="label">Tools I use</span>
+        <ul class="tools" aria-label="Tools">
+          <li class="tool">Unity</li>
+          <li class="tool">C#</li>
+          <li class="tool">Visual Scripting</li>
+          <li class="tool">Unreal Engine</li>
+          <li class="tool">Blueprint</li>
+          <li class="tool"><strong>Figma</strong></li>
+          <li class="tool">Photoshop</li>
+          <li class="tool">Premiere Pro</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FENÊTRE CV -->
+  <section class="win shadow" id="w-resume" data-win="resume" aria-label="Resume" hidden>
+    <div class="bar">
+      <button class="tb" type="button" data-max aria-label="Agrandir">[ ]</button>
+      <button class="tb" type="button" data-close aria-label="Fermer">x</button>
+    </div>
+    <div class="body resume-in">
+      <h2 class="glow">RESUME</h2>
+      <p class="cv-hint">Click the resume to enlarge it</p>
+      <figure class="cv-page zoomfig"><img class="zoom" src="img/cv-fr-1.jpg" alt="Resume of Luna Arjdal, junior UX/UI designer (in French)"></figure>
+    </div>
+  </section>
+
+  <!-- FENÊTRE CONTACT -->
+  <section class="win shadow" id="w-contact" data-win="contact" aria-label="Contact" hidden>
+    <div class="bar">
+      <button class="tb" type="button" data-max aria-label="Agrandir">[ ]</button>
+      <button class="tb" type="button" data-close aria-label="Fermer">x</button>
+    </div>
+    <div class="body contact-in">
+      <form class="box grid panel" id="contact-form">
+        <h2>Contact Me</h2>
+        <label for="c-from">Your email<input class="field" id="c-from" name="from" type="email" placeholder="@" required></label>
+        <label for="c-object">Object<input class="field" id="c-object" name="object" type="text" placeholder="Object"></label>
+        <label for="c-message">Message<textarea class="field" id="c-message" name="message" rows="4" placeholder="your message..." required></textarea></label>
+        <button class="btn" type="submit">Send</button>
+        <p class="status" id="c-status" role="status" hidden></p>
+      </form>
+      <div class="infos">
+        <div class="info grid panel">
+          <span>EMAIL</span>
+          <span class="val" id="my-email">luna.arjdal1@gmail.com</span>
+        </div>
+        <div class="info grid panel">
+          <span>PHONE</span>
+          <span class="val" id="my-phone">06 25 06 12 84</span>
+        </div>
+        <div class="info grid panel">
+          <span>LINKEDIN</span>
+          <!-- Remplace le lien par celui de ton profil -->
+          <a class="val" href="https://www.linkedin.com/" target="_blank" rel="noopener">My Profil</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FENÊTRE PROJET (une div par projet) -->
+  <article class="win shadow" id="w-project" data-win="project" aria-label="Project" hidden>
+    <div class="bar">
+      <button class="tb" type="button" data-max aria-label="Agrandir">[ ]</button>
+      <button class="tb" type="button" data-close aria-label="Fermer">x</button>
+    </div>
+    <div class="body project-in">
+
+      <!-- PROJET : Bacastages (stage) -->
+      <div class="proj" data-proj="baca" hidden>
+        <!-- 1. Résumé + infos clés -->
+        <header class="p-hero grid panel">
+          <span class="kicker">UX/UI Internship · EdTech</span>
+          <h1 class="with-logo" aria-label="Bacastages"><img src="img/baca-logo.png" alt=""><span aria-hidden="true">acastages</span></h1>
+          <p class="lead">Bacastages is a <strong>Lyon-based EdTech platform</strong>, founded by Romain Saint-Jean, that helps young people find their way into the professional world.</p>
+          <p class="lead">As the <strong>UX/UI designer for two months</strong>, my mission was to analyze the website, detect the <strong>friction points</strong> and the moments where users <strong>drop off</strong>, then rebuild a <strong>more modern and simpler experience</strong>.</p>
+          <dl class="facts">
+            <div class="fact"><dt>Role</dt><dd>UX/UI Designer (intern)</dd></div>
+            <div class="fact"><dt>Date</dt><dd>June to July 2026</dd></div>
+            <div class="fact"><dt>Tools</dt><dd>Figma · Claude Design</dd></div>
+            <div class="fact"><dt>Website</dt><dd><a href="https://bacastages.fr/" target="_blank" rel="noopener">bacastages.fr</a></dd></div>
+          </dl>
+        </header>
+
+        <!-- 2. Démo du nouveau site (à la place du trailer) -->
+        <section class="p-trailer" aria-label="Website walkthrough">
+          <div class="browser">
+            <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>bacastages.fr</span></div>
+            <video controlslist="nofullscreen nodownload noremoteplayback" disableremoteplayback disablepictureinpicture loop webkit-playsinline src="img/baca-demo.mp4" poster="img/baca-hero.jpg" controls muted playsinline preload="none" aria-label="Walkthrough of the new Bacastages website"></video>
+          </div>
+        </section>
+
+        <!-- 3. Contributions -->
+        <h2 class="p-title">My contributions</h2>
+
+        <section class="row">
+          <div class="row-text">
+            <span class="label">UX Audit</span>
+            <h3>A website where users got lost</h3>
+            <p>I audited the whole website, from the landing page to the post-login interface, to find where users were struggling and giving up.</p>
+            <ul class="starlist">
+              <li>Key information was hidden or barely visible.</li>
+              <li>A simple action took 6 to 7 clicks, so users gave up along the way.</li>
+              <li>Families, middle schools and high schools were all mixed together, so it was hard to tell who the site was talking to.</li>
+              <li>The platform's figures and partner companies were not highlighted.</li>
+            </ul>
+          </div>
+          <figure class="deck" data-deck aria-label="Screens of the new website">
+            <div class="deck-stack">
+              <img src="img/baca-steps.jpg" alt="New page explaining the mini-internship and the 4-step journey" draggable="false">
+              <img src="img/baca-stats.jpg" alt="Trust section with partner network and key figures" draggable="false">
+            </div>
+          </figure>
+        </section>
+
+        <section class="row rev">
+          <div class="row-text">
+            <span class="label">Users</span>
+            <h3>Designing for three audiences</h3>
+            <p>Each audience now has its own clear entry point and path.</p>
+            <p><strong>Families</strong> need to be reassured. They look for clear information about the partner schools that will welcome their child.</p>
+            <p><strong>Middle and high schools</strong> want efficiency, with a dashboard that puts forward the features that save them time.</p>
+          </div>
+          <figure class="deck" data-deck aria-label="Screens of the new website">
+            <div class="deck-stack">
+              <img src="img/baca-schools.jpg" alt="School space, all your students' mini-internships in one click" draggable="false">
+              <img src="img/baca-card.jpg" alt="Family space of the new homepage" draggable="false">
+            </div>
+          </figure>
+        </section>
+
+        <section class="prog grid panel">
+          <span class="label">UX Process</span>
+          <h3>From audit to user testing</h3>
+          <ol class="steps vertical" aria-label="UX process">
+            <li><b>Full UX audit</b><span>Audited the landing page and the post-login interface to find the friction points and the moments where users gave up.</span></li>
+            <li><b>User research</b><span>Ran qualitative interviews with middle and high school students about their career-guidance needs.</span></li>
+            <li><b>Workflows in Figma</b><span>Designed all of the website's workflows in Figma, mapping every user path before the redesign.</span></li>
+            <li><b>Redesign with Claude Design</b><span>Rebuilt the website with fewer clicks, a clearer hierarchy and a modern interface.</span></li>
+            <li><b>User testing &amp; iteration</b><span>Tested the new website with about 20 people, clients of the platform and members of the incubator, then refined it.</span></li>
+          </ol>
+        </section>
+
+        <section class="row">
+          <div class="row-text">
+            <span class="label">User testing</span>
+            <h3>Simpler for everyone</h3>
+            <p>The main action now takes <strong>3 clicks instead of 6 to 7</strong>, and <strong>15 of the 20 testers</strong> completed every task with no difficulty.</p>
+            <p class="said">“The website is clear and easy to read. I don't need to think too much to do what I have to do.” <span>A tester</span></p>
+            <p>Their feedback led to three final changes, <strong>a clearer color code</strong>, <strong>consistent call-to-action buttons</strong> (same color, same shape) and <strong>key features brought forward</strong>.</p>
+          </div>
+          <figure class="row-img zoomfig"><img class="zoom" src="img/baca-hero.jpg" alt="Homepage of the redesigned Bacastages website"></figure>
+        </section>
+
+        <section class="prog grid panel">
+          <span class="label">Working with the founder</span>
+          <h3>Autonomy, guided by regular check-ins</h3>
+          <p>I <strong>worked independently</strong> on the audit, the workflows, the prototypes and the user tests, with <strong>very regular meetings with Romain</strong>, the founder, who shared his vision and priorities.</p>
+          <p>It was my first time using <strong>Claude Design</strong>, and Romain encouraged me to try it. It let us <strong>iterate many times</strong> and test ideas that would never have fit into a two-month internship.</p>
+        </section>
+
+        <section class="gamif-intro">
+          <span class="label">Gamification</span>
+          <h3>Where UX meets game design</h3>
+          <p>Adapting to Romain's needs, I combined my <strong>UX/UI skills with game design</strong> by bringing <strong>gamified features</strong> to the platform. I also built <strong>interactive game prototypes</strong> to help young people who don't know what to do yet try out different paths.</p>
+        </section>
+
+        <section class="row">
+          <div class="row-text">
+            <span class="label">Prototype 1</span>
+            <h3>An ikigai made of stars</h3>
+            <p>A career-discovery concept based on the ikigai. Students pull back a <strong>slingshot</strong> and place their stars on what they love, what they are good at and what matters to them.</p>
+            <p>Each star they place draws a <strong>constellation</strong>. Where the circles cross, the game suggests <strong>real mini-internships</strong> to explore near them.</p>
+          </div>
+          <figure class="phone-fig"><div class="phone"><video controlslist="nofullscreen nodownload noremoteplayback" disableremoteplayback disablepictureinpicture loop webkit-playsinline class="trailer-portrait ikigai" src="img/ikigai.mp4" poster="img/ikigai-poster.jpg" controls muted playsinline preload="none" aria-label="Ikigai star game demo"></video></div></figure>
+        </section>
+
+        <section class="row rev">
+          <div class="row-text">
+            <span class="label">Prototype 2</span>
+            <h3>Riposte, three moves and one profile</h3>
+            <p>A mobile <strong>card duel</strong> that builds the student's <strong>professional profile</strong>. Milo, the game master, throws a workplace crisis on the table, and the student answers by sliding a response card. Every answer counts, in secret.</p>
+            <p>After six situations, the hidden layer is revealed. The student gets a <strong>signature card</strong> describing their style, and the game suggests <strong>immersion days</strong> that match it.</p>
+          </div>
+          <figure class="phone-fig"><div class="phone"><video controlslist="nofullscreen nodownload noremoteplayback" disableremoteplayback disablepictureinpicture loop webkit-playsinline class="trailer-portrait riposte" src="img/riposte.mp4" poster="img/riposte-poster.jpg" controls muted playsinline preload="none" aria-label="Riposte card game demo"></video></div></figure>
+        </section>
+
+        <a class="btn visit" href="https://bacastages.fr/" target="_blank" rel="noopener">Visit bacastages.fr ↗</a>
+      </div>
+
+      <!-- PROJET : Carambolage -->
+      <div class="proj" data-proj="car" hidden>
+        <!-- 1. Résumé + infos clés -->
+        <header class="p-hero grid panel">
+          <span class="kicker">Mobile roguelite · Team project</span>
+          <h1>Carambolage</h1>
+          <p class="lead">Carambolage is a <strong>mobile roguelite inspired by pool</strong>. Your goal is to <strong>destroy the target cubes</strong> of each arena to reach the next level. During a run, you can replace your balls with <strong>special-effect balls</strong> and choose upgrades for them.</p>
+          <p class="lead">Our team's objective was to create a <strong>highly replayable mobile game</strong> and to build a <strong>complete economy design system</strong> into it.</p>
+          <dl class="facts">
+            <div class="fact"><dt>Role</dt><dd>Game Designer &amp; UX/UI Designer</dd></div>
+            <div class="fact"><dt>Team</dt><dd>4 Game Designers, 4 Gameplay Programmers</dd></div>
+            <div class="fact"><dt>Date</dt><dd>April to June 2026</dd></div>
+            <div class="fact"><dt>Tools</dt><dd>Figma · Teams</dd></div>
+          </dl>
+        </header>
+
+        <!-- 2. Trailer -->
+        <section class="p-trailer" aria-label="Trailer">
+          <div class="phone big"><video controlslist="nofullscreen nodownload noremoteplayback" disableremoteplayback disablepictureinpicture loop webkit-playsinline muted class="trailer-portrait" src="img/car-trailer-hd.mp4" poster="img/car-poster-hd.jpg" controls playsinline preload="none" aria-label="Carambolage trailer"></video></div>
+        </section>
+
+        <!-- 3. Contributions -->
+        <h2 class="p-title">My contributions</h2>
+
+        <section class="row">
+          <div class="row-text">
+            <span class="label">Game Design</span>
+            <h3>Building the gameplay bricks</h3>
+            <p>Together with the other game designers, I designed the core bricks of the game, starting with the blocks:</p>
+            <ul class="starlist">
+              <li>A block's <strong>color shows its health</strong>. The more HP, the lighter it is. It darkens as it takes damage.</li>
+              <li>Each destroyed block drops <strong>a coin</strong> (meta currency) and <strong>an XP point</strong> to level up during the run, collected when the ball stops.</li>
+              <li><strong>Four shapes</strong> (square, circle, right triangle, rectangle) to create varied bounces.</li>
+            </ul>
+          </div>
+          <figure class="phone-fig"><div class="phone"><img src="img/car-thunder.jpg" alt="Thunder Ball, when it bounces, it casts lightning on a random block"></div></figure>
+        </section>
+
+        <section class="prog grid panel">
+          <span class="label">Game Design</span>
+          <h3>Special balls that change how you play</h3>
+          <p>Each special ball is designed around a <strong>player behavior</strong>, so choosing a ball means choosing a strategy.</p>
+          <div class="feats">
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="17" r="4"/><path d="M10 14l10-10M14 4h6v6"/></svg>
+              <h4>Laser Ball</h4>
+              <p>When it bounces on a wall, it fires 2 lasers, so the player learns to aim at the walls.</p>
+            </article>
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>
+              <h4>Disco Ball</h4>
+              <p>When it stops, it fires lasers in random directions, so players try to keep it near the center to hit as much as possible.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="row rev">
+          <div class="row-text">
+            <span class="label">Level Design &amp; Balancing</span>
+            <h3>Designing every arena</h3>
+            <p>I designed the <strong>level design of all the arenas</strong> and handled the <strong>balancing of the game</strong>.</p>
+            <p>Every level is built as if it were arena 10, then the game scales the blocks' HP with a <strong>difficulty factor</strong> that goes from ×0.2 in arena 1 up to ×1 in arena 10. The same layout looks different depending on where it appears, colors keep the same meaning within a run, and lighter blocks appearing over time give a real sense of progression.</p>
+            <div class="minis">
+              <div><b>11</b><span>upgrades per run, early game</span></div>
+              <div><b>16</b><span>in world 3</span></div>
+              <div><b>43</b><span>late game</span></div>
+            </div>
+          </div>
+          <figure class="deck phone-deck" data-deck aria-label="Arenas">
+            <div class="deck-stack">
+              <img src="img/car-level.jpg" alt="Level 6 arena with a diamond pattern of blocks" draggable="false">
+              <img src="img/car-game.jpg" alt="Level 1 arena with green blocks" draggable="false">
+            </div>
+          </figure>
+        </section>
+
+        <section class="row">
+          <div class="row-text">
+            <span class="label">UX/UI Design</span>
+            <h3>A simple, efficient mobile UI</h3>
+            <p>I designed the <strong>whole HUD and the UI of the game in Figma</strong>, including the menus, the ball collection and the shop.</p>
+            <p>The phone came with strong constraints, so my goal was an interface that stays <strong>simple and efficient</strong>, where players always understand where to tap.</p>
+            <p>In the level-up screen, the player <strong>picks one of three balls</strong>. Each card shows the ball, its damage in green and its effect in a few words, and the run's upgrades stay visible below, sorted into balls and skills.</p>
+          </div>
+          <figure class="mock-fig zoomfig"><img class="zoom" src="img/car-wf-choose.png" alt="Figma mockup of the level-up screen, choose one of three balls"></figure>
+        </section>
+
+        <section class="wide-mock">
+          <span class="label center-label">Figma mockups · ball upgrade flow</span>
+          <figure class="zoomfig"><img class="zoom" src="img/car-wf-upgrade.png" alt="Figma mockups of the ball upgrade flow, collection, then a detail popup with fragments, gold cost and Upgrade button"></figure>
+          <p class="mock-caption">From the ball collection, a tap opens a popup with the ball's stats, its fragments and its gold cost. The Upgrade button turns green only when the player can afford it.</p>
+        </section>
+
+        <section class="prog grid panel">
+          <span class="label">UX/UI Design</span>
+          <h3>Onboarding without walls of text</h3>
+          <ol class="steps vertical" aria-label="First launch">
+            <li><b>A clear goal</b><span>A banner at the top of the first level says "Goal, destroy all" followed by the target block icon.</span></li>
+            <li><b>Show, don't tell</b><span>An animated hand invites the player to drag the ball down, and comes back after 2 seconds of inactivity.</span></li>
+            <li><b>First reward</b><span>After 8 destroyed blocks, "LEVEL UP!" appears and the player gets a first upgrade to try right away.</span></li>
+            <li><b>Keep the tension</b><span>"Level complete! Use your remaining balls…", then "LAST BALL!" when only one is left.</span></li>
+            <li><b>A readable ending</b><span>"ARENA CLEAR", or "GAME OVER" with the icons of the targets left.</span></li>
+          </ol>
+        </section>
+
+        <section class="prog grid panel">
+          <span class="label">Economy design</span>
+          <h3>A meta-progression that keeps players coming back</h3>
+          <div class="feats">
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+              <h4>Worlds &amp; shops</h4>
+              <p>After a run, players return to a lobby with two shops, one for ball upgrades and one premium. Finishing a run unlocks the next world and its new balls, for good.</p>
+            </article>
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .9-3 2s1.3 1.7 3 2 3 .9 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2"/></svg>
+              <h4>Gold &amp; player level</h4>
+              <p><strong>Gold is kept win or lose</strong>, while XP resets after each run. Gold raises the player's level, which boosts the in-run XP multiplier.</p>
+            </article>
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 8v12M4 12h16M12 8c-1.5-3-5-3-5-1s3 1 5 1c2 0 5 1 5-1s-3.5-2-5 1"/></svg>
+              <h4>Boosters &amp; fragments</h4>
+              <p>Daily quests and gems give <strong>boosters</strong> (Basic, Super, Mega) full of ball fragments. With enough fragments and gold, a ball levels up and deals more damage.</p>
+            </article>
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20a6 6 0 0 1 12 0M14 20a4.5 4.5 0 0 1 7.5-3.3"/></svg>
+              <h4>Team organization</h4>
+              <p>I organized the team's work and followed up on the project using Teams.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="gdd">
+          <span class="label center-label">From our Game Design Document · click to enlarge</span>
+          <div class="gdd-grid">
+            <figure class="zoomfig"><img class="zoom" src="img/gdd-1.jpg" alt="GDD page, the blocks, health colors, drops and shapes"><figcaption>The blocks</figcaption></figure>
+            <figure class="zoomfig"><img class="zoom" src="img/gdd-2.jpg" alt="GDD page, laser balls and laser skills"><figcaption>Laser balls &amp; skills</figcaption></figure>
+            <figure class="zoomfig"><img class="zoom" src="img/gdd-5.jpg" alt="GDD page, progression in a world, difficulty factor and upgrade projection"><figcaption>Progression in a world</figcaption></figure>
+            <figure class="zoomfig"><img class="zoom" src="img/gdd-4.jpg" alt="GDD page, first launch flow"><figcaption>First launch flow</figcaption></figure>
+            <figure class="zoomfig"><img class="zoom" src="img/gdd-3.jpg" alt="GDD page, meta-progression"><figcaption>Meta-progression</figcaption></figure>
+          </div>
+        </section>
+      </div>
+
+      <!-- PROJET : Monster Hunter World -->
+      <div class="proj" data-proj="mhw" hidden>
+        <!-- 1. Résumé + infos clés -->
+        <header class="p-hero grid panel">
+          <span class="kicker">UX Research &amp; UI Design · Team project</span>
+          <h1 class="long">UX Analysis &amp; UI Overhaul of Monster Hunter World</h1>
+          <p class="lead">How do you modernize one of gaming's most complex menu systems without losing its soul? This collaborative project dives deep into <strong>information architecture and visual hierarchy</strong>. We identified key pain points in the current user flow and proposed a <strong>complete UI redesign</strong> aimed at <strong>reducing cognitive load</strong> and enhancing accessibility for both veterans and newcomers.</p>
+          <dl class="facts">
+            <div class="fact"><dt>Role</dt><dd>UI/UX Designer</dd></div>
+            <div class="fact"><dt>Type</dt><dd>Team project</dd></div>
+            <div class="fact"><dt>Date</dt><dd>February to March 2026</dd></div>
+            <div class="fact"><dt>Tools</dt><dd>Figma</dd></div>
+          </dl>
+        </header>
+
+        <!-- 2. Démarche -->
+        <section class="prog grid panel">
+          <span class="label">Roadmap</span>
+          <h3>From research to redesign</h3>
+          <ol class="steps five" aria-label="Project roadmap">
+            <li><b>Research</b><span>Player survey, personas, pain points, visual hierarchy analysis, click count and comparisons with other games.</span></li>
+            <li><b>UI reorganization</b><span>Menu tree and information priority with the MoSCoW method.</span></li>
+            <li><b>Wireframing</b><span>Grids, layout, navigation components and concrete fixes for each pain point.</span></li>
+            <li><b>Prototyping</b><span>Interactions and micro-interactions in Figma.</span></li>
+            <li><b>Presentation</b><span>Context, pain points, solutions and a before / after of each interface.</span></li>
+          </ol>
+        </section>
+
+        <h2 class="p-title">My contributions</h2>
+
+        <!-- 3. Recherche joueurs -->
+        <section class="row">
+          <div class="row-text">
+            <span class="label">UX Research</span>
+            <h3>Immersive analysis &amp; data gathering</h3>
+            <p>My primary focus was to bridge the gap between player frustration and design solutions. After immersing myself in the game for several hours to identify its core complexities, I designed and deployed a <strong>comprehensive user survey</strong>.</p>
+            <p>I took care to craft questions with a <strong>neutral tone</strong> to eliminate bias and ensure the integrity of the data, focusing specifically on <strong>friction points</strong> within the HUD, navigation menus, and combat feedback.</p>
+            <div class="minis">
+              <div><b>19</b><span>players surveyed</span></div>
+              <div><b>79%</b><span>describe themselves as optimizers</span></div>
+              <div><b>42%</b><span>have played over 200 hours</span></div>
+            </div>
+          </div>
+          <figure class="row-img zoomfig"><img class="zoom" src="img/mhw2-players.jpg" alt="Survey results, type of players, platform, play time, with conclusions"></figure>
+        </section>
+
+        <section class="row rev">
+          <div class="row-text">
+            <span class="label">UX Research</span>
+            <h3>Defining the audience</h3>
+            <p>Combining the survey results with research on player archetypes, I built <strong>three personas</strong>. They became our "north star" for every design decision.</p>
+            <ul class="starlist">
+              <li><strong>The series fans</strong> want precise data and endgame depth, and dislike visual aids that get in the way.</li>
+              <li><strong>The Wilds converts</strong> look for familiar landmarks and miss the modern comfort of the newer game.</li>
+              <li><strong>The curious newcomers</strong> need clear guidance and quick rewards, or they give up.</li>
+            </ul>
+            <p>The key takeaway was to <strong>improve access for newcomers without patronizing veteran players</strong>.</p>
+          </div>
+          <figure class="row-img zoomfig"><img class="zoom" src="img/mhw2-persona.jpg" alt="Three personas, the series fans, the Wilds converts and the curious newcomers"></figure>
+        </section>
+
+        <!-- 4. Analyse -->
+        <section class="row">
+          <div class="row-text">
+            <span class="label">UX Analysis</span>
+            <h3>Five key user tasks</h3>
+            <p>We picked <strong>five tasks</strong> players do all the time and analyzed each one step by step, from loading an item set, upgrading weapons, learning to fight, equipping decorations and setting up the radial item wheel.</p>
+            <p>For the item set, the hierarchical task analysis showed <strong>7 steps</strong> and many button presses, including a sub-menu that is <strong>invisible</strong> in the main list and only appears in the legend at the bottom of the screen.</p>
+          </div>
+          <figure class="deck" data-deck aria-label="Task analysis">
+            <div class="deck-stack tall">
+              <img src="img/mhw2-tasks.jpg" alt="The five user tasks analyzed" draggable="false">
+              <img src="img/mhw2-hta.jpg" alt="Hierarchical task analysis of loading an item set" draggable="false">
+            </div>
+          </figure>
+        </section>
+
+        <section class="row rev">
+          <div class="row-text">
+            <span class="label">UX Analysis</span>
+            <h3>Heuristics &amp; cognitive load</h3>
+            <p>Using Jakob Nielsen's <strong>10 usability heuristics</strong>, I explained why each screen was blocking players, then proposed a fix for each problem, like keeping the chest visible, adding a confirmation before overwriting a set, graying out what doesn't matter right now and grouping buttons by purpose.</p>
+            <p>To provide an objective basis for our overhaul, I also ran a <strong>Cognitive Load Analysis</strong>, highlighting area by area how much "<strong>visual noise</strong>" each screen sends to the player. This was the cornerstone of our final layout.</p>
+          </div>
+          <figure class="deck" data-deck aria-label="Heuristic evaluation and cognitive load">
+            <div class="deck-stack tall">
+              <img src="img/mhw2-heuristic.jpg" alt="Heuristic evaluation with problems and solutions" draggable="false">
+              <img src="img/mhw2-cogload.jpg" alt="Cognitive load analysis of the radial menu screen" draggable="false">
+            </div>
+          </figure>
+        </section>
+
+        <section class="row">
+          <div class="row-text">
+            <span class="label">UX Analysis</span>
+            <h3>The radial menu, under the microscope</h3>
+            <p>The radial item wheel is essential for high-level play, yet many players never use it. Our scene analysis revealed why:</p>
+            <ul class="starlist">
+              <li>There is no logical grouping in the item grid, so healing and utility items are mixed, which slows decisions.</li>
+              <li>The wheel resets if the player doesn't save their item set, and all the setup is lost.</li>
+            </ul>
+            <p>Our ideas were to filter the grid to show only carried items, offer pre-built wheels to win over non-users, and warn players about unsaved changes.</p>
+          </div>
+          <figure class="row-img zoomfig"><img class="zoom" src="img/mhw2-radial.jpg" alt="Scene analysis of the radial menu, goals, pain points and opportunities"></figure>
+        </section>
+
+        <!-- 5. UI -->
+        <section class="prog grid panel">
+          <span class="label">UI Design</span>
+          <h3>From strategy to structure with wireframing</h3>
+          <p>Once the <strong>friction points</strong> were identified, we translated our solutions into <strong>Low-Fidelity Wireframes</strong>. The goal was to reorganize the information architecture without the distraction of visuals. Here is the chest inventory, with the pouch and chest side by side, clearer categories, an item description in the middle and grouped shortcuts.</p>
+          <figure class="wide-img zoomfig"><img class="zoom" src="img/mhw2-wire.jpg" alt="Original chest inventory screen and its redesigned wireframe"></figure>
+          <div class="feats">
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h5a3 3 0 0 1 0 6H8z"/><path d="M8 9h5a3 3 0 0 1 0 6H8z"/><path d="M8 15h2a3 3 0 1 1-3 3"/><circle cx="16" cy="12" r="3"/></svg>
+              <h4>Interactive prototyping in Figma</h4>
+              <p>To validate our ideas, we built <strong>High-Fidelity interactive prototypes</strong> in <strong>Figma</strong>. This allowed us to focus on the speed and responsiveness of the menus. We ensured that every action, from navigating the item pouch to swapping weapons, felt smooth and intuitive for the player.</p>
+            </article>
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.5"/><path d="M5 8l7 1.5L19 8M12 9.5V14l-3 6M12 14l3 6"/></svg>
+              <h4>Functionality &amp; accessibility</h4>
+              <p>We also optimized the layout and font sizes to ensure the interface remained <strong>readable during intense combat</strong>. These prototypes helped us simulate the final experience, ensuring the new UI was more functional and less intrusive while respecting the game's original logic.</p>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <!-- PROJET : Make It Melt -->
+      <div class="proj" data-proj="melt" hidden>
+        <!-- 1. Résumé + infos clés -->
+        <header class="p-hero grid panel">
+          <span class="kicker">Brawler 3D · Team project</span>
+          <h1>Make It Melt</h1>
+          <p class="lead">In Make It Melt, you play as <strong>Marceline</strong>, a skilled blacksmith whose raw materials have unexpectedly come to life and escaped. As these <strong>sentient ores</strong> are too tough to be broken by force, you must chase them through various levels and use strategy to guide them into the <strong>right furnaces</strong>. <strong>Heat is your only weapon</strong> in this frantic quest to reclaim your workshop's supplies.</p>
+          <dl class="facts">
+            <div class="fact"><dt>Role</dt><dd>Game Designer &amp; Programmer</dd></div>
+            <div class="fact"><dt>Team</dt><dd>5 Game Designers</dd></div>
+            <div class="fact"><dt>Date</dt><dd>October to December 2025</dd></div>
+            <div class="fact"><dt>Tools</dt><dd>Unity · C#</dd></div>
+          </dl>
+        </header>
+
+        <!-- 2. Trailer -->
+        <section class="p-trailer" aria-label="Trailer">
+          <video controlslist="nofullscreen nodownload noremoteplayback" disableremoteplayback disablepictureinpicture loop webkit-playsinline muted class="trailer" src="img/melt-trailer-hd.mp4" poster="img/melt-poster-hd.jpg" controls playsinline preload="none" aria-label="Make It Melt trailer"></video>
+        </section>
+
+        <!-- 3. Contributions : texte / image en alternance -->
+        <h2 class="p-title">My contributions</h2>
+
+        <section class="row">
+          <div class="row-text">
+            <span class="label">Game Design</span>
+            <h3>Rethinking the brawler</h3>
+            <p>This project was developed by a <strong>team of five Game Designers</strong>. Since we handled the entire programming process ourselves, we had to be pragmatic and adapted our design goals to our technical capabilities to ensure a polished and functional core experience.</p>
+            <p>Our goal was to deconstruct the traditional idea of a brawler. Inspired by <strong>billiard physics</strong>, we moved away from pure aggression to incorporate a <strong>tactical and reflective layer</strong>. Players must anticipate trajectories and calculate angles, making strategy just as vital as the combat itself.</p>
+          </div>
+          <figure class="deck" data-deck aria-label="Screenshots">
+            <div class="deck-stack">
+              <img src="img/melt-hd-1.jpg" alt="Marceline heating an ore behind a grate, next to a furnace" draggable="false">
+              <img src="img/melt-hd-3.jpg" alt="Furnace room with pink and orange flames and a column of ores" draggable="false">
+              <img src="img/melt-hd-6.jpg" alt="Two furnaces, one orange and one pink, with ores to sort" draggable="false">
+            </div>
+          </figure>
+        </section>
+
+        <section class="row rev">
+          <div class="row-text">
+            <span class="label">Game Design</span>
+            <h3>Pitching the vision</h3>
+            <p>While the Game Concept was a collaborative effort, I took full charge of the <strong>visual communication</strong> for our oral presentations.</p>
+            <p>I designed and structured the <strong>PowerPoint decks</strong>, translating our collective ideas into a professional and impactful visual format to ensure our vision was effectively communicated during our pitches.</p>
+          </div>
+          <figure class="deck" data-deck aria-label="Screenshots">
+            <div class="deck-stack">
+              <img src="img/melt-hd-2.jpg" alt="Marceline running toward a glowing furnace over lava" draggable="false">
+              <img src="img/melt-hd-4.jpg" alt="Circular furnace arena with a volcano of molten metal" draggable="false">
+              <img src="img/melt-hd-5.jpg" alt="Tutorial, hit with your right joystick to use your hammer on the enemy" draggable="false">
+            </div>
+          </figure>
+        </section>
+
+        <section class="prog grid panel">
+          <span class="label">Programming</span>
+          <h3>Building the game in Unity &amp; C#</h3>
+          <p>I <strong>co-managed the C# programming</strong> for this project using Unity. My work focused on building the game's <strong>core architecture</strong> and ensuring a seamless player experience through four key areas:</p>
+          <div class="feats">
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="14" r="7"/><path d="M15 8l3-3M18 2v2M21 5h-2M20 3l-1 1"/></svg>
+              <h4>Enemy Behaviors</h4>
+              <p>Engineered a diverse range of enemy behaviors using <strong>modular logic</strong>, including exploding types, jumping mechanics…</p>
+            </article>
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16"/><path d="M2 21h20M15 12h.01"/></svg>
+              <h4>Environment &amp; Gameplay Mechanics</h4>
+              <p>Programmed interactive level elements including platforms, door systems, ovens, and checkpoint logic. I also implemented the core <strong>player health system</strong>.</p>
+            </article>
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h8M8 16h5"/></svg>
+              <h4>UI/UX &amp; Scene Management</h4>
+              <p>Developed the <strong>complete menu system</strong> and programmed smooth scene transitions to ensure a professional flow throughout the game.</p>
+            </article>
+            <article class="feat">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/></svg>
+              <h4>Juice &amp; Game Feel</h4>
+              <p>A significant portion of my contribution was dedicated to Game Feel. I implemented <strong>VFX</strong> (particle systems) and visual feedback to ensure that every interaction felt satisfying, responsive, and immersive.</p>
+            </article>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- PROJET : Sploush -->
+      <div class="proj" data-proj="splosh" hidden>
+        <!-- 1. Résumé + infos clés -->
+        <header class="p-hero grid panel">
+          <span class="kicker">2.5D Platformer · Team project</span>
+          <h1>Sploush</h1>
+          <p class="lead">Sploush is a <strong>curious slime</strong> living in a peaceful city. But for him, life doesn't end at the edge of the local neighborhoods. Convinced that a vast world awaits beyond, he sets off on a journey. His only means of travel? A natural ability to propel himself using powerful <strong>water jets</strong>.</p>
+          <p class="lead">In this <strong>2.5D platformer</strong>, the city becomes a massive playground for vertical exploration. Your survival and progress depend entirely on how you manage your <strong>water levels</strong>, since every multi-directional blast consumes a part of your internal reservoir. Traverse the city from its deepest alleys to its highest peaks, and finally discover what lies beyond the walls.</p>
+          <dl class="facts">
+            <div class="fact"><dt>Role</dt><dd>Game Designer &amp; Level Designer</dd></div>
+            <div class="fact"><dt>Team</dt><dd>5 Game Designers, 2 Programmers, 1 Sound Designer</dd></div>
+            <div class="fact"><dt>Date</dt><dd>April to May 2025</dd></div>
+            <div class="fact"><dt>Tools</dt><dd>Unity 3D · Trello · Excel</dd></div>
+          </dl>
+        </header>
+
+        <!-- 2. Trailer -->
+        <section class="p-trailer" aria-label="Trailer">
+          <video controlslist="nofullscreen nodownload noremoteplayback" disableremoteplayback disablepictureinpicture loop webkit-playsinline muted class="trailer" src="img/sploush-trailer-hd.mp4" poster="img/sploush-logo.jpg" controls playsinline preload="none" aria-label="Sploush trailer"></video>
+        </section>
+
+        <!-- 3. Contributions -->
+        <h2 class="p-title">My contributions</h2>
+
+        <section class="row">
+          <div class="row-text">
+            <span class="label">Game Design</span>
+            <h3>From phobia to fun</h3>
+            <p>Sploush was developed as a cross-curriculum team project, bringing together <strong>five Game Designers, two Programmers, and one Sound Designer</strong>.</p>
+            <p>Our creative process was highly iterative. We originally envisioned a horror game centered on phobias, specifically <strong>aquaphobia</strong>, but ultimately pivoted toward a lighter, "<strong>goofy</strong>" atmosphere to better suit our vision of fun. Despite this shift, we chose to keep water as our core element, transforming it from a source of fear into an atypical and dynamic <strong>propulsion system</strong>.</p>
+          </div>
+          <figure class="deck" data-deck aria-label="Screenshots">
+            <div class="deck-stack">
+              <img src="img/sploush-hd-6.jpg" alt="Sploush propelling himself into the sky with a water jet" draggable="false">
+              <img src="img/sploush-hd-2.jpg" alt="Sploush jumping between floating walls" draggable="false">
+              <img src="img/sploush-hd-5.jpg" alt="Underwater level full of pink coral spikes" draggable="false">
+              <img src="img/sploush-hd-1.jpg" alt="Sploush climbing up a vertical shaft" draggable="false">
+            </div>
+          </figure>
+        </section>
+
+        <section class="row rev">
+          <div class="row-text">
+            <span class="label">Game Design</span>
+            <h3>Building the foundation</h3>
+            <p>Throughout the development, we had to balance our creative ambitions with technical feasibility, carefully managing our time and collective skill sets. To stay organized, we relied on industry-standard tools like <strong>Trello and Excel</strong>.</p>
+            <p>As a Game Designer, I played a key role in the project's foundation, actively contributing to the creation of the <strong>Game Concept Document</strong> and the design of the various <strong>pitch presentations</strong> to ensure a clear and compelling vision for the team.</p>
+          </div>
+          <figure class="row-img"><img src="img/sploush-hd-7.jpg" alt="Sploush logo"></figure>
+        </section>
+
+        <section class="prog grid panel">
+          <span class="label">Level Design</span>
+          <h3>Level 3, The Nightclub</h3>
+          <p>Once the team finalized the core mechanics, I took full ownership of Level 3, The Nightclub. My role was to define the <strong>visual identity and atmosphere</strong> of this environment while crafting the <strong>entire level layout</strong>.</p>
+          <div class="row">
+            <div class="row-text">
+              <p>My primary design goal was to introduce a new gameplay mechanic, lasers, which required a careful balance of the difficulty curve. Since the game's unique propulsion controls already presented a challenge, I focused on a <strong>progressive learning path</strong>.</p>
+            </div>
+            <figure class="deck" data-deck aria-label="The Nightclub level">
+              <div class="deck-stack">
+                <img src="img/sploush-hd-3.jpg" alt="Nightclub room with three vertical red lasers" draggable="false">
+                <img src="img/sploush-hd-4.jpg" alt="Sploush hiding between two laser-firing enemies" draggable="false">
+              </div>
+            </figure>
+          </div>
+          <ol class="steps" aria-label="Learning path">
+            <li><b>Discover</b><span>Low-risk encounters let players familiarize themselves with the lasers.</span></li>
+            <li><b>Escalate</b><span>The stakes gradually increase as lasers combine with the existing movement difficulty.</span></li>
+            <li><b>Master</b><span>A level that stays challenging yet fair, with a smooth and rewarding progression.</span></li>
+          </ol>
+        </section>
+      </div>
+
+      <!-- PROJET : Cube Breaker -->
+      <div class="proj" data-proj="cube" hidden>
+        <!-- 1. Résumé + infos clés -->
+        <header class="p-hero grid panel">
+          <span class="kicker">One-button game · Solo project</span>
+          <h1>Cube Breaker</h1>
+          <p class="lead">Cube Breaker is a <strong>one-button arcade game</strong> set in a vibrant <strong>neon universe</strong>. Master the power of fragmentation in an experience perfectly crafted for mobile gamers.</p>
+          <p class="lead">The core mechanic is simple yet deep. Use a <strong>single tap</strong> to detonate your energy orb, splitting it into <strong>six smaller projectiles</strong> that blast outward in a lethal spray. To shatter every cube on the screen, you must time your explosion at the perfect location to trigger the ultimate <strong>chain reaction</strong>. Analyze the layout, find the sweet spot, and clear levels with the <strong>fewest attempts</strong> possible. In this world of neon and physics, precision is the key to total destruction.</p>
+          <dl class="facts">
+            <div class="fact"><dt>Role</dt><dd>Game Designer &amp; Programmer</dd></div>
+            <div class="fact"><dt>Type</dt><dd>Solo project</dd></div>
+            <div class="fact"><dt>Date</dt><dd>January to March 2025</dd></div>
+            <div class="fact"><dt>Tools</dt><dd>Unity · Visual Scripting</dd></div>
+          </dl>
+        </header>
+
+        <!-- 2. Trailer -->
+        <section class="p-trailer" aria-label="Trailer">
+          <video controlslist="nofullscreen nodownload noremoteplayback" disableremoteplayback disablepictureinpicture loop webkit-playsinline muted class="trailer" src="img/cube-trailer-hd.mp4" poster="img/cube-poster-hd.jpg" controls playsinline preload="none" aria-label="Cube Breaker trailer"></video>
+        </section>
+
+        <!-- 3. Contributions -->
+        <h2 class="p-title">My contributions</h2>
+
+        <section class="row">
+          <div class="row-text">
+            <span class="label">Game Design</span>
+            <h3>One button, one constraint</h3>
+            <p>Cube Breaker is a solo project where I handled <strong>every aspect of production myself</strong>, including Game Design, Programming, Level Design and Game Feel.</p>
+            <p>The primary challenge was to design a complete experience using only a <strong>single input</strong>. This constraint immediately led me to the <strong>mobile platform</strong>, as "one-button" mechanics perfectly suit the intuitive nature of smartphone gaming.</p>
+            <p>I drew my main inspirations from the physics-based puzzles of <strong>Cut the Rope</strong> and the precision of <strong>Pinball</strong>. Combined with my passion for neon aesthetics, I aimed to create a vibrant experience specifically tailored for casual gamers.</p>
+          </div>
+          <figure class="deck" data-deck aria-label="Screenshots">
+            <div class="deck-stack">
+              <img src="img/cube-hd-5.jpg" alt="Cube Breaker main menu with shattered glass and neon cubes" draggable="false">
+              <img src="img/cube-hd-4.jpg" alt="First level, press space to drop the sphere" draggable="false">
+              <img src="img/cube-hd-2.jpg" alt="Level with teleporting cyan cubes and white walls" draggable="false">
+            </div>
+          </figure>
+        </section>
+
+        <section class="row rev">
+          <div class="row-text">
+            <span class="label">Game Design</span>
+            <h3>An iterative design process</h3>
+            <p>The project went through several iterations, starting with a comprehensive <strong>Game Concept Document</strong> (GCD). From a programming perspective, I focused on technical feasibility while ensuring deep, engaging gameplay.</p>
+            <p>During the prototyping phase, a major design shift occurred when I implemented a ball that <strong>moves continuously from right to left</strong>. This decision was crucial as it gave the player the power to choose their strategy with <strong>millimeter precision</strong>, transforming a simple click into a calculated tactical explosion.</p>
+          </div>
+          <figure class="deck" data-deck aria-label="Screenshots">
+            <div class="deck-stack">
+              <img src="img/cube-hd-3.jpg" alt="End of level screen, well done, two stars out of three" draggable="false">
+              <img src="img/cube-hd-1.jpg" alt="Level with a green special cube surrounded by neon walls" draggable="false">
+            </div>
+          </figure>
+        </section>
+
+        <section class="prog grid panel">
+          <span class="label">Programming</span>
+          <h3>Built with Unity's Visual Scripting</h3>
+          <p>On the technical side, I developed the game using <strong>Unity's Visual Scripting</strong>, focusing heavily on the robustness of the core mechanics.</p>
+          <div class="feats">
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M3.3 7l3.5 2M17.2 15l3.5 2M3.3 17l3.5-2M17.2 9l3.5-2"/></svg>
+              <h4>Fragmentation system</h4>
+              <p>A significant portion of the programming was dedicated to the ball's <strong>fragmentation system</strong>, ensuring the trajectory of the six sub-projectiles felt natural while preventing technical issues like <strong>infinite bouncing loops</strong>.</p>
+            </article>
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M13 7h4a2 2 0 0 1 2 2v3M11 17H7a2 2 0 0 1-2-2v-2"/></svg>
+              <h4>Specialized cubes</h4>
+              <p>I also programmed a variety of specialized cube behaviors, such as <strong>teleportation and shrinking</strong>, to keep the level design diverse and challenging.</p>
+            </article>
+            <article class="feat">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z"/></svg>
+              <h4>Juice &amp; Game Feel</h4>
+              <p>Game Feel is essential for a casual mobile experience. I implemented several "juice" elements, including <strong>screen shakes, custom shaders, and polished particle effects</strong>, to make every explosion feel impactful and rewarding for the player.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="prog grid panel">
+          <span class="label">Level Design</span>
+          <h3>A seamless, stress-free onboarding</h3>
+          <p>My goal was to create a seamless onboarding experience through <strong>organic tutorialization</strong>, staying true to the casual mobile gaming philosophy.</p>
+          <ol class="steps" aria-label="Level progression">
+            <li><b>Discover</b><span>The initial stages let players discover the explosion mechanic and the victory conditions naturally, without the need for intrusive text.</span></li>
+            <li><b>Grow</b><span>Special-effect cubes are introduced progressively. The number of targets increases and layouts become more complex to maintain a steady challenge.</span></li>
+            <li><b>Replay</b><span>There is no punitive design. The player decides whether to restart a level to improve their score, in a "relaxing yet engaging" flow.</span></li>
+          </ol>
+        </section>
+      </div>
+
+      <!-- PROJET : Voracines -->
+      <div class="proj" data-proj="p5" hidden>
+        <!-- 1. Résumé + infos clés -->
+        <header class="p-hero grid panel">
+          <span class="kicker">Board game · Team project</span>
+          <h1>Voracines</h1>
+          <p class="lead">In Voracines, players step into the twisted bark of <strong>malevolent, ancient trees</strong> fueled by an insatiable hunger for human life force. Set in a world of suffocating darkness, your goal is to <strong>expand your corrupt root system</strong> across the board to ensnare and devour villagers before your competitors can claim them.</p>
+          <p class="lead">Strategy is at the heart of the forest. You must carefully manage your growth, outmaneuver rival roots, and strategically choke the land to satiate your eternal hunger. In this grim competition, only the most ruthless predator will dominate the soil. Will you starve in the shadows?</p>
+          <dl class="facts">
+            <div class="fact"><dt>Role</dt><dd>Game Designer</dd></div>
+            <div class="fact"><dt>Team</dt><dd>6 Game Designers, 2 Game Artists</dd></div>
+            <div class="fact"><dt>Date</dt><dd>[DATE]</dd></div>
+            <div class="fact"><dt>Tools</dt><dd>Excel · Google Forms · PowerPoint</dd></div>
+          </dl>
+        </header>
+
+        <!-- 2. Trailer -->
+        <section class="p-trailer" aria-label="Trailer">
+          <video controlslist="nofullscreen nodownload noremoteplayback" disableremoteplayback disablepictureinpicture loop webkit-playsinline muted class="trailer" src="img/vor-trailer.mp4" poster="img/voracines.jpg" controls playsinline preload="none" aria-label="Voracines trailer"></video>
+        </section>
+
+        <!-- 3. Contributions -->
+        <h2 class="p-title">My contributions</h2>
+
+        <section class="row">
+          <div class="row-text">
+            <span class="label">Game Design</span>
+            <h3>Becoming the predator</h3>
+            <p>Voracines was developed by a collaborative team of <strong>six Game Designers and two Game Artists</strong> with a clear objective, to create a deep, strategic <strong>territory-expansion game</strong>.</p>
+            <p>Our creative process began with extensive research and <strong>playtesting of existing board games</strong> to identify the most engaging mechanics. From this exploration, the concept of predatory nature emerged, leading us to our signature "<strong>root expansion</strong>" system.</p>
+          </div>
+          <figure class="deck" data-deck aria-label="Board and box">
+            <div class="deck-stack tall fit">
+              <img src="img/vor2-board.jpg" alt="Hexagonal game board with villages and forest paths" draggable="false">
+              <img src="img/vor2-box.jpg" alt="Voracines box cover with twisted roots around a village" draggable="false">
+              <img src="img/vor2-back-up.jpg" alt="Back of the box with the game components" draggable="false">
+            </div>
+          </figure>
+        </section>
+
+        <section class="row rev">
+          <div class="row-text">
+            <span class="label">Game Design</span>
+            <h3>No more waiting for your turn</h3>
+            <p>One of our primary design challenges was solving the common issue of <strong>player downtime</strong>.</p>
+            <p>Through numerous iterations, we focused on keeping the experience engaging for everyone, ensuring that players <strong>remain active</strong> and invested even when it isn't their turn.</p>
+          </div>
+          <figure class="deck" data-deck aria-label="Game tiles">
+            <div class="deck-stack tall fit">
+              <img src="img/vor2-tiles-up.jpg" alt="Sheet of hexagonal village tiles" draggable="false">
+              <img src="img/vor2-skulls-up.jpg" alt="Sheet of skull tokens worth 5, 10 and 15 points" draggable="false">
+            </div>
+          </figure>
+        </section>
+
+        <section class="gdd">
+          <span class="label center-label">From our rulebook · click to enlarge</span>
+          <div class="gdd-grid rulebook">
+            <figure class="zoomfig"><img class="zoom" src="img/vor2-summary.jpg" alt="Rulebook, table of contents"><figcaption>Table of contents</figcaption></figure>
+            <figure class="zoomfig"><img class="zoom" src="img/vor2-story.jpg" alt="Rulebook, short story, the voracious forest"><figcaption>Short story</figcaption></figure>
+            <figure class="zoomfig"><img class="zoom" src="img/vor2-rule.jpg" alt="Rulebook, playing a propagation card"><figcaption>Playing a propagation card</figcaption></figure>
+          </div>
+        </section>
+
+        <section class="prog grid panel">
+          <span class="label">Production</span>
+          <h3>Organizing, testing, pitching</h3>
+          <p>Alongside the design work, I took charge of several key parts of the production.</p>
+          <div class="feats">
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 10h18M8 2v4M16 2v4M8 14h3M8 17h6"/></svg>
+              <h4>Organizational workflow</h4>
+              <p>Throughout the project, I was responsible for the <strong>organizational workflow</strong>, utilizing Excel to manage data and scheduling.</p>
+            </article>
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
+              <h4>Playtesting</h4>
+              <p>I headed the <strong>playtesting phase</strong>, creating and analyzing <strong>Google Forms</strong> to gather player feedback for balancing.</p>
+            </article>
+            <article class="feat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="13" rx="2"/><path d="M12 16v5M8 21h8M7 12l3-3 2 2 4-4"/></svg>
+              <h4>Pitch to the jury</h4>
+              <p>Finally, I managed the visual presentation of the project, designing the <strong>PowerPoint materials</strong> to pitch our vision effectively to the jury.</p>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <button class="btn back" type="button" id="back">← Back to projects</button>
+    </div>
+  </article>
+</div>
+
+<script>
+(function () {
+  var desk = document.getElementById('desk');
+
+  // Images et vidéos : si le stockage du site n'est pas joignable (copie téléchargée), on bascule sur les fichiers du dossier img/
+  var BLOB_MAP = {"69a9d5d4fd1a762d7b48d155da41bb08": "baca-card.jpg", "7ee7a339996dfc49d0092081f3788c2e": "baca-demo.mp4", "f84d70400a3ea098803925362d2adf56": "baca-hero.jpg", "d68fc352f1857d9f8128a9bf95000eb9": "baca-logo.png", "07b54fd1bd20a04119e6ade319396761": "baca-schools.jpg", "f1846ccdc9cc846fd6a2a13c72dd6431": "baca-stats.jpg", "215be7439282f629dca6b3bcdf7668fc": "baca-steps.jpg", "60249797761bd9ee2d48fa19567213ef": "baca.mp4", "f8a1867d1e41319bc332d7d71b871406": "car-game.jpg", "edcdf8bfd20dbbf4cc2b1839fd1d0564": "car-level.jpg", "0320cba2d32c17209e8cd99b98febd0f": "car-logo.jpg", "8309a3d3ad083c3e50f2c52cbc0723bb": "car-poster-hd.jpg", "1cac1dd695377b75ca2dd47803f1c519": "car-thunder.jpg", "fa24886d5c9d2ef66c0be37e3c496340": "car-trailer-hd.mp4", "319787e5348b829fda3677608a0ffcea": "car-wf-choose.png", "23e1a2997aab6730516ae2d0716e1070": "car-wf-upgrade.png", "8f6bf9d1d85fe5d239ef13b610190bc0": "car.mp4", "b68ec4af31dad5624c241601b1cfcb71": "cube-card-hd.jpg", "7e3abdd7c2bf23e5b5a8042dc3b6d9c8": "cube-hd-1.jpg", "d7791c59bee57d954712b23c16e12ec1": "cube-hd-2.jpg", "b6158906c5380380ce768dcd3a6b096d": "cube-hd-3.jpg", "ab49849ad1f38d61e6b08dc251514aa5": "cube-hd-4.jpg", "32c0ee45240359384e1e03846d50655e": "cube-hd-5.jpg", "0f80fb8912ff512367e2435315df30b0": "cube-poster-hd.jpg", "8ec9800aa3f8156dc95f1b8c2dde3579": "cube-trailer-hd.mp4", "5c5a4b6b34a18583aef79bf5cc4f4aa1": "cube.mp4", "0f46196e00337055865aa15d8752ec8b": "cv-fr-1.jpg", "6c0e1363c3ac38249c1011b50b3c84d2": "gdd-1.jpg", "dd0d8a14909420764cdbeee4a4f78d4e": "gdd-2.jpg", "a051bb329af5fba279cfa0e82787a010": "gdd-3.jpg", "d07e9d4efb1ea67b0eacfec03f766bb0": "gdd-4.jpg", "b6962987509cae4a90def17a6d430442": "gdd-5.jpg", "f45487bc78f9452b94ff71689c77aede": "ikigai-poster.jpg", "2bff37bb2402e8ca278cba7babc93d7d": "ikigai.mp4", "cfd73eabe7ea25ec5e001a4106561d16": "life-fraisier.jpg", "88ed694a9e8b881be007a1b4d191d7d8": "life-kl.jpg", "6b8ba7ab8158aa567ff0bbe38bda49d0": "life-salmon.jpg", "155513b4dab1dee2b49844a8cf634c3d": "life-stockholm.jpg", "6a3d51d5e8be373315e7f6b5b4711b65": "luna.jpg", "c819c894906cb3a43afb2dbf5bb374a7": "melt-card-logo.jpg", "2baf57158a177db5941c1a99bf9228cb": "melt-hd-1.jpg", "ca86f30d584bd0354c755fa8ad7218b2": "melt-hd-2.jpg", "38690969d653cb2262c516fff310d52a": "melt-hd-3.jpg", "fad51aae9efbd1defd9c67810952bbc8": "melt-hd-4.jpg", "4d87a094974f57312059444a57e26fea": "melt-hd-5.jpg", "3170ab802c6e6f3ae35e24e4652f19ff": "melt-hd-6.jpg", "13d2dad4d1c004e6ced44efc6cbe9627": "melt-poster-hd.jpg", "f884eda52db0e25df821f3d005cc3161": "melt-trailer-hd.mp4", "9c1c049390a7d4ae79cef1905d8237d2": "melt.mp4", "6da356ac4ed709ba78c472fc9fdc7f12": "mhw-card.jpg", "56b314c35fdf299eaf0717fc1446c98d": "mhw2-cogload.jpg", "d8f5787f6854d9d2ade0ff7ec714c732": "mhw2-heuristic.jpg", "358fb0d55ff0306d2ebd063dae27297f": "mhw2-hta.jpg", "340e9b139c2b08c6b0ff6827ec777038": "mhw2-persona.jpg", "226c6ce120c7a0f847e8b0bf6af1977b": "mhw2-players.jpg", "1fcd07f90ce8c3cc1f765bea17475191": "mhw2-radial.jpg", "a873950b6cb8f525bb0be22772e1027c": "mhw2-tasks.jpg", "ad5ad58d3ddb8043f4a8164a5ac85e13": "mhw2-wire.jpg", "ec0f973f60c7c397d5a69b0ba81f5c13": "riposte-poster.jpg", "62f08572c0dd088a326c4ad46324350b": "riposte.mp4", "d8e57bf7e88488af05d046e5122503a9": "splosh.mp4", "c1b2fc2da4ce5fd13086c1672b79c0b3": "sploush-hd-1.jpg", "cb865928fd5ed929601800f5544e4992": "sploush-hd-2.jpg", "65bfa123bd967ab60f104f19e59d89ad": "sploush-hd-3.jpg", "417d9458db10230f7b584bbd6df08902": "sploush-hd-4.jpg", "c7edcb874a4495d09afdd5ae6d9046f5": "sploush-hd-5.jpg", "20ad888e64fbf275f6441b62daf4997f": "sploush-hd-6.jpg", "2e192d5db4ebb3abb655a67a95193f26": "sploush-hd-7.jpg", "04be1e2b09adebd54cc6a64ead272239": "sploush-logo.jpg", "f777a689f0d107e798633c20c46d2a8d": "sploush-trailer-hd.mp4", "9b6ee88c57e4d61cbef0c6d322515098": "vor-trailer.mp4", "433239dd1f6b2f176048e9a972490cbb": "vor2-back-up.jpg", "bfdc75348b8a76b16c840e06c601589d": "vor2-board.jpg", "537a710d6fe98a1ae3de9b1276ca14a4": "vor2-box.jpg", "1ea9dedf218b7008a021d93f34bfee43": "vor2-card.jpg", "fc73bb2fae4a6b324454b25da3372370": "vor2-rule.jpg", "c10748f0580f3ba8f8dde87b5fcec712": "vor2-skulls-up.jpg", "cd61cd5e6b7deb1d22f967c8abc96766": "vor2-story.jpg", "57d1afaaa6ac2e514d5e4837aa3d83b0": "vor2-summary.jpg", "56544eadbc5d7d63ff12515d5adb1722": "vor2-tiles-up.jpg", "929df3d950cb667905b44b5d6e9843ce": "voracines.jpg", "8256e32dc274bc140bd516152de21f9b": "voracines.mp4"};
+  function toLocal() {
+    document.querySelectorAll('img[src^="/_blob/"], video[src^="/_blob/"], video[poster^="/_blob/"]').forEach(function (el) {
+      var s = el.getAttribute('src'), p = el.getAttribute('poster');
+      if (s && s.indexOf('/_blob/') === 0) el.setAttribute('src', 'img/' + BLOB_MAP[s.slice(7)]);
+      if (p && p.indexOf('/_blob/') === 0) el.setAttribute('poster', 'img/' + BLOB_MAP[p.slice(7)]);
+    });
+  }
+  if (location.protocol === 'file:') { toLocal(); }
+  else {
+    var probe = new Image();
+    probe.onerror = toLocal;
+    probe.src = 'img/baca-logo.png';
+  }
+
+  var topZ = 10;
+  var STAR = 'M12 0C13 8 16 11 24 12C16 13 13 16 12 24C11 16 8 13 0 12C8 11 11 8 12 0Z';
+
+  // Étoiles
+  var starBox = document.getElementById('stars');
+  for (var i = 0; i < 46; i++) {
+    var s = Math.round(8 + Math.random() * 16);
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('class', 'star');
+    svg.style.left = (Math.random() * 98).toFixed(1) + '%';
+    svg.style.top = (Math.random() * 96).toFixed(1) + '%';
+    svg.style.width = s + 'px';
+    svg.style.height = s + 'px';
+    svg.style.color = Math.random() > 0.5 ? '#E6007E' : '#A585F0';
+    svg.style.animationDelay = (Math.random() * 3).toFixed(2) + 's';
+    var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('d', STAR);
+    p.setAttribute('fill', 'currentColor');
+    svg.appendChild(p);
+    starBox.appendChild(svg);
+  }
+
+  function win(key) { return document.querySelector('[data-win="' + key + '"]'); }
+  function front(w) { w.style.zIndex = ++topZ; }
+
+  function place(w) {
+    if (w.dataset.placed) return;
+    var W = desk.clientWidth, H = desk.clientHeight, ww = w.offsetWidth;
+    var spots = {
+      main: [W / 2 - 470, H / 2 - 200],
+      projects: [W / 2 - 120, 24],
+      about: [W / 2 - 250, 50],
+      contact: [W / 2 - 170, 70],
+      resume: [W / 2 - 60, 20],
+      project: [W / 2 - 420, 30]
+    };
+    var x, y, k = w.dataset.win;
+    if (W < 720) { x = 8; y = k === 'main' ? Math.max(16, H / 2 - 200) : 12; }
+    else { x = spots[k][0]; y = spots[k][1]; }
+    x = Math.max(8, Math.min(x, W - ww - 8));
+    y = Math.max(8, y);
+    w.style.left = Math.round(x) + 'px';
+    w.style.top = Math.round(y) + 'px';
+    w.dataset.placed = '1';
+  }
+
+  function openWin(key) {
+    var w = win(key);
+    w.hidden = false;
+    w.classList.remove('pop'); void w.offsetWidth; w.classList.add('pop');
+    place(w);
+    front(w);
+    return w;
+  }
+
+  function closeWin(w) { w.hidden = true; w.classList.remove('max'); w.querySelectorAll('video').forEach(function (v) { v.pause(); }); }
+
+  // Accueil
+  document.getElementById('enter').addEventListener('click', function () {
+    document.getElementById('welcome').hidden = true;
+    openWin('main');
+  });
+
+  // Icônes du bureau : chaque icône dans un rond
+  document.querySelectorAll('.icon > svg').forEach(function (svgEl) {
+    var wrap = document.createElement('span');
+    wrap.className = 'ico';
+    svgEl.parentNode.insertBefore(wrap, svgEl);
+    wrap.appendChild(svgEl);
+  });
+  document.querySelectorAll('[data-open]').forEach(function (b) {
+    b.addEventListener('click', function () { openWin(b.dataset.open); });
+  });
+
+  // Projets
+  function openProject(id) {
+    var w = openWin('project');
+    w.querySelectorAll('[data-proj]').forEach(function (d) {
+      d.hidden = d.dataset.proj !== id;
+      d.querySelectorAll('video').forEach(function (v) {
+        if (d.hidden) { v.pause(); } else { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      });
+    });
+    w.querySelector('.body').scrollTop = 0;
+    w.querySelectorAll('[data-carousel] .track').forEach(function (t) { t.scrollLeft = 0; t.dispatchEvent(new Event('scroll')); });
+  }
+  // Vidéos des fiches : en boucle et sans le son par défaut (le visiteur active le son lui-même)
+  var touch = window.matchMedia('(hover: none)').matches;
+  document.querySelectorAll('video').forEach(function (v) {
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', '');
+    v.setAttribute('disablepictureinpicture', '');
+    v.setAttribute('controlslist', 'nofullscreen nodownload noremoteplayback');
+    // iPhone : si la vidéo tente de passer en plein écran, on la remet dans la page
+    v.addEventListener('webkitbeginfullscreen', function () {
+      try { v.webkitExitFullscreen(); } catch (e) {}
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    });
+    if (touch) { v.removeAttribute('controls'); v.controls = false; }
+  });
+  document.querySelectorAll('.proj video').forEach(function (v) {
+    v.loop = true;
+    v.preload = 'metadata';
+    if (!touch) return;
+    // Téléphone : pas de contrôles (donc pas de plein écran), juste un bouton son
+    v.removeAttribute('controls');
+    v.controls = false;
+    v.style.pointerEvents = 'none';
+    var holder = v.parentElement;
+    if (getComputedStyle(holder).position === 'static') holder.style.position = 'relative';
+    var s = document.createElement('button');
+    s.type = 'button';
+    s.className = 'snd';
+    s.setAttribute('aria-label', 'Turn sound on');
+    s.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z"/><path class="x" d="M16 9l5 6M21 9l-5 6"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+    s.addEventListener('click', function () {
+      v.muted = !v.muted;
+      s.classList.toggle('on', !v.muted);
+      s.setAttribute('aria-label', v.muted ? 'Turn sound on' : 'Turn sound off');
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    });
+    holder.appendChild(s);
+  });
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function starSvg(cls) {
+    return '<svg class="spark ' + cls + '" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="' + STAR + '"/></svg>';
+  }
+  document.querySelectorAll('[data-project]').forEach(function (b) {
+    b.addEventListener('click', function () { openProject(b.dataset.project); });
+    // étoiles autour de chaque carte
+    b.insertAdjacentHTML('beforeend', starSvg('s1') + starSvg('s2') + starSvg('s3'));
+    // aperçu vidéo : se lance au survol, s'arrête quand on part
+    var v = b.querySelector('.thumb video');
+    if (!v) return;
+    function play() {
+      b.classList.add('playing');
+      var p = v.play(); if (p && p.catch) p.catch(function () { b.classList.remove('playing'); });
+    }
+    function stopVid() { b.classList.remove('playing'); v.pause(); v.currentTime = 0; }
+    b.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') play(); });
+    b.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') stopVid(); });
+    b.addEventListener('focus', play);
+    b.addEventListener('blur', stopVid);
+    // Téléphone (pas de survol) : la vidéo se lance seule quand la carte est visible
+    if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting && en.intersectionRatio >= 0.6) play();
+          else { b.classList.remove('playing'); v.pause(); }
+        });
+      }, { root: document.querySelector('#w-projects .body'), threshold: [0, 0.6, 1] });
+      io.observe(b);
+    }
+  });
+  document.getElementById('back').addEventListener('click', function () {
+    closeWin(win('project'));
+    openWin('projects');
+  });
+
+  // Fenêtres : premier plan, agrandir, fermer, déplacer
+  document.querySelectorAll('.win').forEach(function (w) {
+    w.addEventListener('pointerdown', function () { if (+w.style.zIndex !== topZ) front(w); });
+    var c = w.querySelector('[data-close]');
+    if (c) c.addEventListener('click', function () { closeWin(w); });
+    var m = w.querySelector('[data-max]');
+    if (m) m.addEventListener('click', function () { w.classList.toggle('max'); front(w); });
+
+    var bar = w.querySelector('.bar'), drag = null;
+    bar.addEventListener('pointerdown', function (e) {
+      if (e.target.closest('button') || w.classList.contains('max') || window.matchMedia('(max-width:720px)').matches) return;
+      drag = { sx: e.clientX, sy: e.clientY, ox: w.offsetLeft, oy: w.offsetTop };
+      try { bar.setPointerCapture(e.pointerId); } catch (err) {}
+    });
+    bar.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var W = desk.clientWidth, H = desk.clientHeight;
+      var x = Math.max(80 - w.offsetWidth, Math.min(drag.ox + e.clientX - drag.sx, W - 80));
+      var y = Math.max(0, Math.min(drag.oy + e.clientY - drag.sy, H - 40));
+      w.style.left = x + 'px';
+      w.style.top = y + 'px';
+    });
+    function stop() { drag = null; }
+    bar.addEventListener('pointerup', stop);
+    bar.addEventListener('pointercancel', stop);
+  });
+
+  // Échap ferme la fenêtre du dessus (sauf la principale)
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var open = Array.prototype.filter.call(document.querySelectorAll('.win'), function (w) { return !w.hidden && w.dataset.win !== 'main'; });
+    if (!open.length) return;
+    open.sort(function (a, b) { return (+b.style.zIndex) - (+a.style.zIndex); });
+    closeWin(open[0]);
+  });
+
+  // Copier email / téléphone
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var el = document.getElementById(b.dataset.copy);
+      var txt = el.textContent.trim();
+      function done() { b.textContent = 'Copied!'; setTimeout(function () { b.textContent = 'Copy'; }, 1500); }
+      function fallback() { var r = document.createRange(); r.selectNodeContents(el); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); }
+      try { navigator.clipboard.writeText(txt).then(done, fallback); } catch (err) { fallback(); }
+    });
+  });
+
+  // Formulaire : prépare un email dans l'appli mail du visiteur
+  var form = document.getElementById('contact-form');
+  var status = document.getElementById('c-status');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var to = document.getElementById('my-email').textContent.trim();
+    var href = 'mailto:' + to +
+      '?subject=' + encodeURIComponent(form.object.value) +
+      '&body=' + encodeURIComponent(form.message.value + '\n\n— ' + form.from.value);
+    status.hidden = false;
+    status.innerHTML = '';
+    var a = document.createElement('a');
+    a.href = href;
+    a.textContent = 'Open it in your mail app';
+    status.appendChild(a);
+    status.appendChild(document.createTextNode(' or write to me directly at ' + to + '.'));
+  });
+
+  // Piles de photos : on balaie la photo du dessus, elle passe derrière
+  var TILTS = [[0, 0, 1.5], [14, 8, -5], [-12, 12, 6], [8, 16, -3]];
+  document.querySelectorAll('[data-deck]').forEach(function (deck) {
+    var stack = deck.querySelector('.deck-stack');
+    var cards = Array.prototype.slice.call(stack.querySelectorAll('img'));
+    var count = deck.querySelector('.deck-count');
+    var order = cards.map(function (c, i) { return i; });
+    var busy = false;
+    function render() {
+      order.forEach(function (ci, pos) {
+        var t = TILTS[Math.min(pos, TILTS.length - 1)];
+        var c = cards[ci];
+        c.style.zIndex = cards.length - pos;
+        c.style.opacity = '1';
+        c.style.transform = 'translate(' + t[0] + 'px,' + t[1] + 'px) rotate(' + t[2] + 'deg) scale(' + (1 - pos * 0.04) + ')';
+        c.classList.toggle('top', pos === 0);
+      });
+      if (count) count.textContent = (order[0] + 1) + ' / ' + cards.length;
+    }
+    function fling(dir) {
+      if (busy || cards.length < 2) return;
+      busy = true;
+      var top = cards[order[0]];
+      top.style.transform = 'translate(' + (dir * 120) + '%, -10px) rotate(' + (dir * 18) + 'deg)';
+      top.style.opacity = '0';
+      setTimeout(function () {
+        order.push(order.shift());
+        render();
+        busy = false;
+      }, 280);
+    }
+    function back() {
+      if (busy || cards.length < 2) return;
+      order.unshift(order.pop());
+      var top = cards[order[0]];
+      top.style.transition = 'none';
+      top.style.transform = 'translate(-120%, -10px) rotate(-18deg)';
+      top.style.opacity = '0';
+      top.style.zIndex = cards.length + 1;
+      void top.offsetWidth;
+      top.style.transition = '';
+      render();
+    }
+    // indice visuel tant qu'on n'a pas encore touché la pile
+    stack.classList.add('hint');
+    stack.insertAdjacentHTML('beforeend', '<span class="deck-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>');
+    stack.addEventListener('pointerdown', function () { stack.classList.remove('hint'); });
+    var nx = deck.querySelector('.d-next'), pv = deck.querySelector('.d-prev');
+    if (nx) nx.addEventListener('click', function () { fling(1); });
+    if (pv) pv.addEventListener('click', back);
+    var d = null;
+    stack.addEventListener('pointerdown', function (e) {
+      if (busy) return;
+      d = { x: e.clientX, y: e.clientY, dx: 0 };
+      stack.classList.add('drag');
+      try { stack.setPointerCapture(e.pointerId); } catch (err) {}
+    });
+    stack.addEventListener('pointermove', function (e) {
+      if (!d) return;
+      d.dx = e.clientX - d.x;
+      var dy = (e.clientY - d.y) * 0.2;
+      cards[order[0]].style.transform = 'translate(' + d.dx + 'px,' + dy + 'px) rotate(' + (1.5 + d.dx / 18) + 'deg)';
+    });
+    function end() {
+      if (!d) return;
+      var dx = d.dx;
+      d = null;
+      stack.classList.remove('drag');
+      if (Math.abs(dx) > 70) fling(dx > 0 ? 1 : -1);
+      else if (Math.abs(dx) < 6) fling(1);
+      else render();
+    }
+    stack.addEventListener('pointerup', end);
+    stack.addEventListener('pointercancel', function () { d = null; stack.classList.remove('drag'); render(); });
+    render();
+  });
+
+  // Onglets (compétences)
+  document.querySelectorAll('[data-tabs]').forEach(function (t) {
+    var btns = Array.prototype.slice.call(t.querySelectorAll('[role="tab"]'));
+    var panels = t.querySelectorAll('[role="tabpanel"]');
+    btns.forEach(function (b, i) {
+      b.addEventListener('click', function () {
+        btns.forEach(function (x, j) { x.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
+        panels.forEach(function (p, j) { p.hidden = j !== i; });
+      });
+    });
+  });
+
+  // Loupe : agrandir une image
+  var LOUPE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>';
+  var lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.hidden = true;
+  lb.innerHTML = '<img alt=""><button type="button" aria-label="Close">x</button>';
+  desk.appendChild(lb);
+  var lbImg = lb.querySelector('img');
+  function openLb(src, alt) { lbImg.src = src; lbImg.alt = alt || ''; lb.hidden = false; lb.style.zIndex = topZ + 50; }
+  function closeLb() { lb.hidden = true; }
+  lb.addEventListener('click', closeLb);
+  document.querySelectorAll('img.zoom').forEach(function (im) {
+    im.closest('.zoomfig').insertAdjacentHTML('beforeend', '<span class="zoom-badge" aria-hidden="true">' + LOUPE + '</span>');
+    im.addEventListener('click', function () { openLb(im.src, im.alt); });
+  });
+  document.querySelectorAll('[data-deck] .deck-stack.tall').forEach(function (st) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'deck-zoom';
+    b.setAttribute('aria-label', 'Enlarge image');
+    b.innerHTML = LOUPE;
+    b.addEventListener('pointerdown', function (e) { e.stopPropagation(); });
+    b.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var top = st.querySelector('img.top') || st.querySelector('img');
+      openLb(top.src, top.alt);
+    });
+    st.appendChild(b);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !lb.hidden) { e.stopImmediatePropagation(); closeLb(); }
+  }, true);
+
+  // Carrousels : swipe, glisser à la souris, flèches, points
+  document.querySelectorAll('[data-carousel]').forEach(function (c) {
+    var track = c.querySelector('.track');
+    var slides = Array.prototype.slice.call(c.querySelectorAll('.slide'));
+    var dotsBox = c.querySelector('.dots');
+    var dots = slides.map(function (s, i) {
+      var d = document.createElement('button');
+      d.type = 'button';
+      d.setAttribute('aria-label', 'Image ' + (i + 1));
+      d.addEventListener('click', function () { go(i); });
+      dotsBox.appendChild(d);
+      return d;
+    });
+    var cur = 0;
+    function go(i) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      var s = slides[i];
+      track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2, behavior: 'smooth' });
+    }
+    function update() {
+      var mid = track.scrollLeft + track.clientWidth / 2, best = 0, bd = Infinity;
+      slides.forEach(function (s, i) {
+        var d = Math.abs(s.offsetLeft + s.offsetWidth / 2 - mid);
+        if (d < bd) { bd = d; best = i; }
+      });
+      cur = best;
+      slides.forEach(function (s, i) { s.classList.toggle('on', i === cur); });
+      dots.forEach(function (d, i) { d.classList.toggle('on', i === cur); });
+    }
+    track.addEventListener('scroll', function () { window.requestAnimationFrame(update); });
+    c.querySelector('.prev').addEventListener('click', function () { go(cur - 1); });
+    c.querySelector('.next').addEventListener('click', function () { go(cur + 1); });
+    // glisser avec la souris (au doigt, ça marche déjà tout seul)
+    var drag = null;
+    track.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      drag = { x: e.clientX, left: track.scrollLeft };
+      track.classList.add('dragging');
+      try { track.setPointerCapture(e.pointerId); } catch (err) {}
+    });
+    track.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      track.scrollLeft = drag.left - (e.clientX - drag.x);
+    });
+    function endDrag() {
+      if (!drag) return;
+      drag = null;
+      track.classList.remove('dragging');
+      update();
+      go(cur);
+    }
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+    update();
+  });
+
+  // Garde les fenêtres visibles si l'écran change de taille
+  window.addEventListener('resize', function () {
+    var W = desk.clientWidth, H = desk.clientHeight;
+    document.querySelectorAll('.win').forEach(function (w) {
+      if (w.hidden || !w.dataset.placed) return;
+      w.style.left = Math.max(8 - w.offsetWidth + 80, Math.min(w.offsetLeft, W - 80)) + 'px';
+      w.style.top = Math.max(0, Math.min(w.offsetTop, H - 40)) + 'px';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
